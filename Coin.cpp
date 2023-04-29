@@ -11,8 +11,7 @@ Coin::Coin()
 
 }
 
-Coin::Display(){
-
+void Coin::display(){
     int fiveCents = 5;
     int tenCents = 19;
     int twentyCents = 25;

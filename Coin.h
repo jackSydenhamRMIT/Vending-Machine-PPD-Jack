@@ -22,6 +22,9 @@ public:
     
     // the count of how many of these are in the cash register
     unsigned count;
+
+    Coin();
+    void display();
 };
 
 #endif // COIN_H
