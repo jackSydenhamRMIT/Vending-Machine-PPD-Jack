@@ -22,6 +22,9 @@ public:
     
     // the count of how many of these are in the cash register
     unsigned count;
+    
+    Coin();
+    Coin(Denomination denomination, unsigned count);
 };
 
 #endif // COIN_H
