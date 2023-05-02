@@ -95,6 +95,7 @@ void LinkedList::loadCoinsData(const char* filename){
             if (std::getline(iss, count_str, ',')) {
                 coin.count = std::stoi(count_str);
             }
+            //test print
             std::cout << coin.denom << std::endl;
             std::cout << coin.count << std::endl;
             
