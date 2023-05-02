@@ -27,6 +27,9 @@ public:
 
     //displays all coins and denominations
     void display(Coin* coin);
+
+    //resets coins to original denominations
+    void ResetCoins(Coin* coin);
 };
 
 #endif // COIN_H
