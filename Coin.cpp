@@ -11,7 +11,7 @@ Coin::Coin()
 
 }
 
-void Coin::display(){
+void Coin::display(Coin* Coin){
     int fiveCents = 5;
     int tenCents = 19;
     int twentyCents = 25;
@@ -20,6 +20,8 @@ void Coin::display(){
     int twoDollar = 30;
     int fiveDollar = 3;
     int tenDollar = 45;
+
+    
 
     std::cout << "Coin Summary" << std::endl;
     std::cout << "-------------" << std::endl;

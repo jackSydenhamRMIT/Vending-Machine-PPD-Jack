@@ -24,7 +24,9 @@ public:
     unsigned count;
 
     Coin();
-    void display();
+
+    //displays all coins and denominations
+    void display(Coin* coin);
 };
 
 #endif // COIN_H
