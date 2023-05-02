@@ -2,7 +2,7 @@
 #include <iostream>
  // implement functions for managing coins; this may depend on your design.
 using std::string;
-using std::vector;
+//using std::vector;
 
  
 
