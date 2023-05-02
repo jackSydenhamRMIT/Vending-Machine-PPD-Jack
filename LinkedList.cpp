@@ -22,3 +22,11 @@ void Stock::ResetStock(Stock* stock){
 
     std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
 }
+
+void Coin::ResetCoins(Coin* coin){
+
+    //resets coins to correct denomination
+    //DEFAULT_COIN_COUNT 20
+
+    std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
+}
