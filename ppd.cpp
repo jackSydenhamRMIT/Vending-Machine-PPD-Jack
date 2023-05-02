@@ -16,21 +16,12 @@ int main(int argc, char **argv)
         std::cerr << "Error:invalid arguments passed in. " << std::endl;
         std::cerr << "Correct arguments are:"<< std::endl << argv[0] << " <stockfile> <coinsfile>" << std::endl;
         std::cerr << "Where <stockfile> and <coinfile> are two valid files in the expected format." << std::endl;
-        return EXIT_FAILURE; 
+        EXIT_FAILURE; 
     }
 
-    std::ifstream stockFile(argv[1]);
-    if (!stockFile) {
-    std::cerr << "Error: Failed to open stock file." << std::endl;
-    return EXIT_FAILURE;
-    } 
-    std::ifstream coinsFile(argv[2]);
-    if (!coinsFile) {
-    std::cerr << "Error: Failed to open coins file." << std::endl;
-    return EXIT_FAILURE;
-    } 
+    const char* StockFile = argv[1];
+    const char* CoinsFile = argv[2];
 
-    std::cout << "Just a test, nothing implemented yet!" << std::endl;
-    
-    return EXIT_SUCCESS;
+    linkedList.loadStockData(StockFile);
+    linkedList.loadCoinsData(CoinsFile);
 }
