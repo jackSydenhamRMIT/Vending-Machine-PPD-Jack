@@ -22,9 +22,18 @@ public:
     
     // the count of how many of these are in the cash register
     unsigned count;
-    
+
+
     Coin();
     Coin(Denomination denomination, unsigned count);
+
+    //displays all coins and denominations
+    void display(Coin* coin);
+
+    //resets coins to original denominations
+    void ResetCoins(Coin* coin);
+
+
 };
 
 #endif // COIN_H
