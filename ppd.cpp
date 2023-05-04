@@ -10,8 +10,18 @@ int main(int argc, char **argv)
 {
     /* validate command line arguments */
     // TODO
+    LinkedList linkedlist;
+    // Check if 3 command line parameters have been entered
+    if (argc != 3){
+        std::cerr << "Error:invalid arguments passed in. " << std::endl;
+        std::cerr << "Correct arguments are:"<< std::endl << argv[0] << " <stockfile> <coinsfile>" << std::endl;
+        std::cerr << "Where <stockfile> and <coinfile> are two valid files in the expected format." << std::endl;
+        EXIT_FAILURE; 
+    }
 
-    std::cout << "Just a test, nothing implemented yet!" << std::endl;
-    
-    return EXIT_SUCCESS;
+    const char* StockFile = argv[1];
+    const char* CoinsFile = argv[2];
+
+    linkedlist.loadStockData(StockFile);
+    linkedlist.loadCoinsData(CoinsFile);    
 }
