@@ -11,7 +11,6 @@ int main(int argc, char **argv)
     /* validate command line arguments */
     // TODO
     LinkedList linkedlist;
-    
     // Check if 3 command line parameters have been entered
     if (argc != 3){
         std::cerr << "Error:invalid arguments passed in. " << std::endl;
