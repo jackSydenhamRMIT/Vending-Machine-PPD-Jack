@@ -8,6 +8,8 @@ class LinkedList
 public:
     LinkedList();
     ~LinkedList();
+    void loadStockData(const char* filename);
+    void loadCoinsData(const char* filename);
 
     // more functions to be added perhaps...
 

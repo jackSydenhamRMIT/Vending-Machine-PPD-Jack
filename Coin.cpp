@@ -1,14 +1,20 @@
 #include "Coin.h"
 #include <iostream>
+
  // implement functions for managing coins; this may depend on your design.
 using std::string;
 //using std::vector;
 
  
 
-Coin::Coin()
-{
+ Coin::Coin() {
+    denom = FIVE_CENTS;
+    count = 0;
+}
 
+Coin::Coin(Denomination denomination, unsigned count) {
+    denom = denomination;
+    this->count = count;
 }
 
 void Coin::display(Coin* coin){
