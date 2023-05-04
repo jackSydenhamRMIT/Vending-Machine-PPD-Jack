@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 {
     /* validate command line arguments */
     // TODO
+    LinkedList linkedlist;
     
     // Check if 3 command line parameters have been entered
     if (argc != 3){
@@ -22,6 +23,6 @@ int main(int argc, char **argv)
     const char* StockFile = argv[1];
     const char* CoinsFile = argv[2];
 
-    linkedList.loadStockData(StockFile);
-    linkedList.loadCoinsData(CoinsFile);
+    linkedlist.loadStockData(StockFile);
+    linkedlist.loadCoinsData(CoinsFile);    
 }
