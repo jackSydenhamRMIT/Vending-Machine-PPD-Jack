@@ -19,11 +19,6 @@ Coin::Coin(Denomination denomination, unsigned count) {
 
 void Coin::display(Coin* coin){
 
-
-    
-
-    
-
     int fiveCents = 0;
     int tenCents = 0;
     int twentyCents = 0;
@@ -33,28 +28,28 @@ void Coin::display(Coin* coin){
     int fiveDollar = 0;
     int tenDollar = 0;
 
-    if (coin->denom = FIVE_CENTS){
+    if (coin->denom == FIVE_CENTS){
         fiveCents = coin->count;
     }
-    else if (coin->denom = TEN_CENTS){
+    else if (coin->denom == TEN_CENTS){
         tenCents = coin->count;
     }
-    else if (coin->denom = TWENTY_CENTS){
+    else if (coin->denom == TWENTY_CENTS){
         twentyCents = coin->count;
     }
-    else if (coin->denom = FIFTY_CENTS){
+    else if (coin->denom == FIFTY_CENTS){
         fiftyCents = coin->count;
     }
-    else if (coin->denom = ONE_DOLLAR){
+    else if (coin->denom == ONE_DOLLAR){
         oneDollar = coin->count;
     }
-    else if (coin->denom = TWO_DOLLARS){
+    else if (coin->denom == TWO_DOLLARS){
         twoDollar = coin->count;
     }
-    else if (coin->denom = FIVE_DOLLARS){
+    else if (coin->denom == FIVE_DOLLARS){
         fiveDollar = coin->count;
     }
-    else if (coin->denom = TEN_DOLLARS){
+    else if (coin->denom == TEN_DOLLARS){
         tenDollar = coin->count;
     }
     
