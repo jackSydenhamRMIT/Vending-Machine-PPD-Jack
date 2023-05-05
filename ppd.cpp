@@ -37,6 +37,15 @@ int main(int argc, char **argv)
     {
         if(num == 1)
         {
+        std::cout<<"Items Menu\n";
+        std::cout<<"----------\n";
+        std::cout<<"ID   |Name \t\t\t\t |Available |Price\n";
+        std::cout<<"------------------------------------------------------------\n";
+        
+        linkedlist.displayItems();
+        std::cout<<"\n";
+        
+        display.show_menu();
 
         }
         else if(num == 2)

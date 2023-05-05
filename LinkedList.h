@@ -16,6 +16,7 @@ public:
                   const Price& price, 
                   unsigned onHand);
     bool removeStock(const std::string& id);
+    void displayItems();
 
 
 

@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 #include <iostream>
+#include <iomanip>
 using std::string;
 //using std::vector;
 
@@ -107,6 +108,19 @@ void LinkedList::loadCoinsData(const char* filename){
         }
     
 
+}
+
+void LinkedList::displayItems() {
+    Node* current = head;
+    while (current != nullptr) {
+        Stock* stock = current->data;
+        std::cout << stock->id << "|" 
+                  << std::left << std::setw(35) << stock->name << "|"
+                  << std::left << std::setw(10) << stock->on_hand << "|"
+                  << "$" << stock->price.dollars << "." << std::setw(2) << std::setfill('0') << stock->price.cents << std::setfill(' ')
+                  << std::endl;
+        current = current->next;
+    }
 }
 
 void LinkedList::addStock(const std::string& id, const std::string& name, const std::string& desc, const Price& price, unsigned onHand) {
