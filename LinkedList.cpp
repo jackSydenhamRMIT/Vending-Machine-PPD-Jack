@@ -105,8 +105,70 @@ void LinkedList::loadCoinsData(const char* filename){
             std::cout << coin.count << std::endl;
             
         }
-    
+}
 
+void LinkedList::addStock(const std::string& id, const std::string& name, const std::string& desc, const Price& price, unsigned onHand) {
+    
+    // Create new Stock object with given parameters
+    Stock* stock = new Stock;
+    stock->id = id;
+    stock->name = name;
+    stock->description = desc;
+    stock->price = price;
+    stock->on_hand = onHand;
+
+    // Create a new node in the linked-list
+    Node* newNode = new Node;
+    newNode->data = stock;
+    newNode->next = nullptr;
+
+    // Place the new node in the linked-list
+    if (head == nullptr) {
+        head = newNode;
+    } else {
+        Node* currNode = head;
+        while (currNode->next != nullptr) {
+            currNode = currNode->next;
+        }
+        currNode->next = newNode;
+    }
+
+    // Increment the count of items stocked (linked-list size)
+    count++;
+}        
+
+bool LinkedList::removeStock(const std::string& id) {
+    if (head == nullptr) {
+        return false; // Nothing to remove
+    }
+
+    if (head->data->id == id) {
+        // The stock to remove is at the list head
+        Node* nodeToRemove = head;
+        head = head->next;
+        delete nodeToRemove->data;
+        delete nodeToRemove;
+        count--;
+        return true;
+    }
+
+    // Find stock object with given stock ID
+    Node* currNode = head;
+    while (currNode->next != nullptr && currNode->next->data->id != id) {
+        currNode = currNode->next;
+    }
+
+    if (currNode->next == nullptr) {
+        return false; // Stock not found
+    }
+
+    // Remove the specific stock object from the list
+    Node* nodeToRemove = currNode->next;
+    currNode->next = nodeToRemove->next;
+    delete nodeToRemove->data;
+    delete nodeToRemove;
+    count--;
+    return true;
 }
     
 void Stock::ResetStock(Stock* stock){
@@ -125,6 +187,3 @@ void Coin::ResetCoins(Coin* coin){
 
     std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
 }
-
-
-

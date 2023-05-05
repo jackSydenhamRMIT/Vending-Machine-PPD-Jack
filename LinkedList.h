@@ -10,6 +10,14 @@ public:
     ~LinkedList();
     void loadStockData(const char* filename);
     void loadCoinsData(const char* filename);
+    void addStock(const std::string& id, 
+                  const std::string& name, 
+                  const std::string& desc, 
+                  const Price& price, 
+                  unsigned onHand);
+    bool removeStock(const std::string& id);
+
+
 
     // more functions to be added perhaps...
 
