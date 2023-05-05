@@ -106,6 +106,9 @@ void LinkedList::loadCoinsData(const char* filename){
             
         }
     
+
+}
+    
 void Stock::ResetStock(Stock* stock){
 
     //loops through linkedlist
@@ -113,6 +116,7 @@ void Stock::ResetStock(Stock* stock){
 
     std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
 }
+
 
 void Coin::ResetCoins(Coin* coin){
 
@@ -123,4 +127,4 @@ void Coin::ResetCoins(Coin* coin){
 }
 
 
-}
+
