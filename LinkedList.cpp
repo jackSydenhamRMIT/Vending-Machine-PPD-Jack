@@ -105,6 +105,8 @@ void LinkedList::loadCoinsData(const char* filename){
             std::cout << coin.count << std::endl;
             
         }
+    
+
 }
 
 void LinkedList::addStock(const std::string& id, const std::string& name, const std::string& desc, const Price& price, unsigned onHand) {
