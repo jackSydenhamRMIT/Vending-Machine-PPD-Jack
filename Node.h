@@ -58,7 +58,10 @@ public:
     Price price;
     
     // how many of this item do we have on hand? 
-    unsigned on_hand;    
+    unsigned on_hand;   
+
+
+    void ResetStock(Stock* stock); 
 };
 
 /**
