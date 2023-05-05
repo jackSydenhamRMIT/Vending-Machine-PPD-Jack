@@ -1,5 +1,7 @@
 #include <iostream>
 #include "LinkedList.h"
+#include "Purchase.h"
+#include "Display.h"
 
 /**
  * manages the running of the program, initialises data structures, loads
@@ -23,5 +25,26 @@ int main(int argc, char **argv)
     const char* CoinsFile = argv[2];
 
     linkedlist.loadStockData(StockFile);
-    linkedlist.loadCoinsData(CoinsFile);    
+    linkedlist.loadCoinsData(CoinsFile);  
+
+    Purchase purchase(linkedlist);
+    Display display;
+
+    display.show_menu();
+
+    int num = 0;
+    while(std::cin>>num)
+    {
+        if(num == 1)
+        {
+
+        }
+        else if(num == 2)
+        {
+            purchase.purchase_room();
+        }
+          //display.show_menu();
+    }
+
+
 }
