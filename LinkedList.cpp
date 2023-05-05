@@ -170,20 +170,20 @@ bool LinkedList::removeStock(const std::string& id) {
     count--;
     return true;
 }
-    
-void Stock::ResetStock(Stock* stock){
 
-    //loops through linkedlist
-    //sets all stock::on_hand values to DEFAULT_STOCK_LEVEL 20
-
-    std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+Stock* LinkedList::find_node(std::string ID)
+{
+    Node *new_p = head;
+    while(new_p != NULL)
+    {
+        if(new_p->data->id == ID)
+            return new_p->data;
+        new_p = new_p->next;
+    }
+    return nullptr;
 }
 
-
-void Coin::ResetCoins(Coin* coin){
-
-    //resets coins to correct denomination
-    //DEFAULT_COIN_COUNT 20
-
-    std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
+int LinkedList::get_coin(int cn)
+{
+    return 1;
 }

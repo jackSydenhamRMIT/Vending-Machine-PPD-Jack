@@ -20,6 +20,8 @@ public:
 
 
     // more functions to be added perhaps...
+    Stock*  find_node(std::string ID);
+    int get_coin(int cn);
 
 private:
     // the beginning of the list
