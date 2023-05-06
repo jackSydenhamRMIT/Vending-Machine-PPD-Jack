@@ -19,6 +19,11 @@ Coin::Coin(Denomination denomination, unsigned count) {
 
 void Coin::display(Coin* coin){
 
+
+    
+
+    
+
     int fiveCents = 0;
     int tenCents = 0;
     int twentyCents = 0;

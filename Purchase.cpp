@@ -44,40 +44,43 @@ void Purchase::purchase_room()
         {
             cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
             cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
-            continue;
         }
-        int coin_cont = m_lst.get_coin(pice);
-        if(coin_cont<=0)
-        {
-            cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
-            cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
-            continue;
-        }
-        need_p -= pice;
-        if(need_p<=0)
-        {
-
-            cout<<"Here is your Meat Pie and your change of $ "<<rest->price.dollars<<"."<<rest->price.cents<<": $2 $1 50c";
-            for(int i=0;i<8 && need_p == 0;)
+        else{
+            Coin coin = m_lst.get_coin(pice);
+            if(coin.count<=0)
             {
-                if(need_p+face_value[i] > 0)
-                {
-                    ++i;
-                    continue;
-                }
-                
-                if(face_value[i] >= 100)
-                    cout<<" $"<<face_value[i]/100;
-                else 
-                    cout<<" "<<face_value[i]<<"c";
-
-                need_p+=face_value[i];
+                cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
+                cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
             }
-            cout<<"\n";
-            return;
+            else{
+                need_p -= pice;
+                m_lst.use_coin(pice);
+                if(need_p<=0)
+                {
+
+                    cout<<"Here is your Meat Pie and your change of $ "<<rest->price.dollars<<"."<<rest->price.cents<<": $2 $1 50c";
+                    for(int i=0;i<8 && need_p == 0;)
+                    {
+                        if(need_p+face_value[i] > 0)
+                        {
+                            ++i;
+                        }
+                        else{
+                        if(face_value[i] >= 100)
+                            cout<<" $"<<face_value[i]/100;
+                            else 
+                                cout<<" "<<face_value[i]<<"c";
+
+                            need_p+=face_value[i]; 
+                        }
+                    }
+                    cout<<"\n";
+                    return;
+                }
+                else
+                cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+            }
         }
-        else
-        cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
     }
 
 }
