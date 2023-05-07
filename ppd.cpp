@@ -71,8 +71,11 @@ int main(int argc, char **argv)
             while (current != NULL) {
             Stock* stock = current->data;
             stock->ResetStock(stock);
+            //std::cout << stock->on_hand << std::endl;
+            current = current->next;
             }
             std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+            display.show_menu();
             
         }
         else if(num == 8)
