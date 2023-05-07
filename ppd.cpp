@@ -51,7 +51,10 @@ int main(int argc, char **argv)
         }
         else if(num == 3)
         {
-
+            linkedlist.saveStockData(StockFile);
+            linkedlist.saveCoinsData(CoinsFile);
+            linkedlist.freeMemory();
+            exit(0);
         }
         else if(num == 4)
         {
