@@ -15,6 +15,8 @@ public:
     Stock*  find_node(std::string ID);
     int get_coin(int cn);
 
+    Node* getHead();
+
 private:
     // the beginning of the list
     Node* head;
