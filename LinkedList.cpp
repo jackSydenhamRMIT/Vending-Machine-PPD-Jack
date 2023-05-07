@@ -81,35 +81,54 @@ void LinkedList::loadStockData(const char* filename) {
 }
 
 }
-void LinkedList::loadCoinsData(const char* filename){  
+void LinkedList::loadCoinsData(const char* filename) {  
     std::ifstream coinsFile(filename);
     if (!coinsFile.is_open()) {
-    std::cerr << "Error: could not open stock file." << std::endl;
-    EXIT_FAILURE;
+        std::cerr << "Error: could not open stock file." << std::endl;
+        exit(EXIT_FAILURE);
     } 
+
     std::string line;
-        while (std::getline(coinsFile, line)) {
-            std::istringstream iss(line);
-            Coin coin;
-            std::string denom_str;
-            if (std::getline(iss, denom_str, ',')) {
-                coin.denom = static_cast<Denomination>(std::stoi(denom_str));
-            }
-
-            std::string count_str;
-            if (std::getline(iss, count_str, ',')) {
-                coin.count = std::stoi(count_str);
-            }
-            //test print
-
-            //std::cout << coin.denom << std::endl;
-            //std::cout << coin.count << std::endl;
-            m_coins.insert(std::make_pair(coin.denom,coin));
-
-            
+    while (std::getline(coinsFile, line)) {
+        std::istringstream iss(line);
+        Coin* coin = new Coin;
+        std::string denom_str;
+        if (std::getline(iss, denom_str, ',')) {
+            coin->denom = static_cast<Denomination>(std::stoi(denom_str));
         }
-}
 
+        std::string count_str;
+        if (std::getline(iss, count_str, ',')) {
+            coin->count = std::stoi(count_str);
+        }
+
+        Node* currNode = head;
+        while (currNode != nullptr) {
+            if (currNode->data1->denom == coin->denom) {
+                currNode->data1->count += coin->count;
+                delete coin;
+                break;
+            }
+            currNode = currNode->next;
+        }
+
+        if (currNode == nullptr) {
+            Node* newNode = new Node;
+            newNode->data1 = coin;
+            newNode->next = nullptr;
+
+            if (head == nullptr) {
+                head = newNode;
+            } else {
+                Node* currNode = head;
+                while (currNode->next != nullptr) {
+                    currNode = currNode->next;
+                }
+                currNode->next = newNode;
+            }
+        }
+    }
+}
 Stock* LinkedList::find_node(std::string ID)
 {
     Node *new_p = head;
