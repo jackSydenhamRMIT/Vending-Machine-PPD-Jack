@@ -12,9 +12,11 @@ public:
     void loadCoinsData(const char* filename);
 
     // more functions to be added perhaps...
+    //Get product information node
     Stock*  find_node(std::string ID);
+    //Get the money information
     Coin get_coin(int cn);
-
+    // Use money
     void use_coin(int cn);
 
 private:
