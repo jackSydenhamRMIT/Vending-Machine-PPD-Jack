@@ -31,8 +31,8 @@ int main(int argc, char **argv)
     Display display;
     Coin* coin;
     coin = new Coin();
-    Stock* stock;
-    stock = new Stock();
+    // Stock* stock;
+    // stock = new Stock();
 
 
     display.show_menu();
@@ -66,7 +66,14 @@ int main(int argc, char **argv)
         }
         else if(num == 7)
         {   
+            
+            Node* current = linkedlist.getHead();
+            while (current != NULL) {
+            Stock* stock = current->data;
             stock->ResetStock(stock);
+            }
+            std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+            
         }
         else if(num == 8)
         {
