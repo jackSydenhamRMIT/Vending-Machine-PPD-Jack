@@ -19,6 +19,8 @@ public:
     // Use money
     void use_coin(int cn);
 
+    Node* getHead();
+
 private:
     // the beginning of the list
     Node* head;
