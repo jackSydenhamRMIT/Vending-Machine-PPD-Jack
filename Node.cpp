@@ -17,9 +17,9 @@ Node::~Node(){
 void Stock::ResetStock(Stock* stock){
 
     //loops through linkedlist
-    //sets all stock::on_hand values to DEFAULT_STOCK_LEVEL 20
-
-    std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+    //sets all stock::on_hand values to DEFAULT_STOCK_LEVEL = "20"
+    stock->on_hand = DEFAULT_STOCK_LEVEL;
+    
 }
 
 void Coin::ResetCoins(Coin* coin){
