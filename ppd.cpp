@@ -43,6 +43,34 @@ int main(int argc, char **argv)
         {
             purchase.purchase_room();
         }
+        else if(num == 3)
+        {
+
+        }
+        else if(num == 4)
+        {
+            
+        }
+        else if(num == 5)
+        {
+            
+        }
+        else if(num == 6)
+        {
+            
+        }
+        else if(num == 7)
+        {
+            
+        }
+        else if(num == 8)
+        {
+            
+        }
+        else if(num == 9)
+        {
+            
+        }
           //display.show_menu();
     }
 
