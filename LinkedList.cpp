@@ -101,8 +101,16 @@ void LinkedList::loadCoinsData(const char* filename){
                 coin.count = std::stoi(count_str);
             }
             //test print
+<<<<<<< HEAD
             //std::cout << coin.denom << std::endl;
             //std::cout << coin.count << std::endl;
+=======
+
+            //std::cout << coin.denom << std::endl;
+            //std::cout << coin.count << std::endl;
+            m_coins.insert(std::make_pair(coin.denom,coin));
+
+>>>>>>> 60f3d4763277d2c6e3e6683fc9d460ec20d8887d
             
         }
 }
@@ -119,7 +127,27 @@ Stock* LinkedList::find_node(std::string ID)
     return nullptr;
 }
 
-int LinkedList::get_coin(int cn)
+Coin LinkedList::get_coin(int cn)
 {
-    return 1;
+    auto coin = m_coins.find(cn);
+    if(coin == m_coins.end())
+    {
+        return Coin();
+    }
+    return coin->second;
 }
+
+
+Node* LinkedList::getHead(){
+    return head;
+}
+
+void LinkedList::use_coin(int cn)
+{
+    if(m_coins.find(cn) == m_coins.end())
+        return ;
+    m_coins[cn].count--;
+    return ;
+}
+
+

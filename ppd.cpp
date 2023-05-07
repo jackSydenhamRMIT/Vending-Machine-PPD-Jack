@@ -12,7 +12,8 @@ int main(int argc, char **argv)
 {
     /* validate command line arguments */
     // TODO
-    LinkedList linkedlist;
+    LinkedList stockList;
+    LinkedList coinList;
     // Check if 3 command line parameters have been entered
     if (argc != 3){
         std::cerr << "Error:invalid arguments passed in. " << std::endl;
@@ -24,15 +25,15 @@ int main(int argc, char **argv)
     const char* StockFile = argv[1];
     const char* CoinsFile = argv[2];
 
-    linkedlist.loadStockData(StockFile);
-    linkedlist.loadCoinsData(CoinsFile);  
+    stockList.loadStockData(StockFile);
+    coinList.loadCoinsData(CoinsFile);  
 
-    Purchase purchase(linkedlist);
+    Purchase purchase(stockList);
     Display display;
     Coin* coin;
     coin = new Coin();
-    Stock* stock;
-    stock = new Stock();
+    // Stock* stock;
+    // stock = new Stock();
 
 
     display.show_menu();
@@ -66,7 +67,17 @@ int main(int argc, char **argv)
         }
         else if(num == 7)
         {   
+            
+            Node* current = stockList.getHead();
+            while (current != NULL) {
+            Stock* stock = current->data;
             stock->ResetStock(stock);
+            //std::cout << stock->on_hand << std::endl;
+            current = current->next;
+            }
+            std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+            display.show_menu();
+            
         }
         else if(num == 8)
         {
