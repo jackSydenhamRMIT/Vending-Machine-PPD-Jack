@@ -23,7 +23,7 @@ void Purchase::purchase_room()
 
     std::string cin_ID;
     std::cin>>cin_ID;
-
+    //Get the input product information
     auto rest = m_lst.find_node(cin_ID);
     if(rest == nullptr)
     {
@@ -38,6 +38,7 @@ void Purchase::purchase_room()
     int pice;
     int need_p = 100*rest->price.dollars + rest->price.cents;
     cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+    //Enter the amount of money paid
     while(std::cin>>pice)
     {
         if(pice != 200 && pice != 500)
@@ -46,6 +47,7 @@ void Purchase::purchase_room()
             cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
         }
         else{
+            //Get the amount of money
             Coin coin = m_lst.get_coin(pice);
             if(coin.count<=0)
             {
@@ -54,7 +56,9 @@ void Purchase::purchase_room()
             }
             else{
                 need_p -= pice;
+                //Amount of money deducted
                 m_lst.use_coin(pice);
+                //Determine if there is enough money to buy this item
                 if(need_p<=0)
                 {
 
@@ -66,6 +70,7 @@ void Purchase::purchase_room()
                             ++i;
                         }
                         else{
+                            //Money is $ or c
                         if(face_value[i] >= 100)
                             cout<<" $"<<face_value[i]/100;
                             else 
