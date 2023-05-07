@@ -85,7 +85,17 @@ int main(int argc, char **argv)
         }
         else if(num == 8)
         {
+            //coin->ResetCoins(coin);
+
+            Node* current = coinList.getHead();
+            while (current != NULL) {
+            Coin* coin = current->data1;
             coin->ResetCoins(coin);
+            //std::cout << stock->on_hand << std::endl;
+            current = current->next;
+            }
+            //std::cout << "“All coin has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+            display.show_menu();
         }
         else if(num == 9)
         {
