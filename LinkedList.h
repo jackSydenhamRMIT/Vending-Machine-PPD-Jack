@@ -1,6 +1,7 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include "Node.h"
+#include "Coin.h"
 #include <map>
 
 class LinkedList
@@ -10,6 +11,9 @@ public:
     ~LinkedList();
     void loadStockData(const char* filename);
     void loadCoinsData(const char* filename);
+    void saveStockData(const char* filename);
+    void saveCoinsData(const char* filename);
+    void freeMemory();
 
     // more functions to be added perhaps...
     //Get product information node
