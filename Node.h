@@ -76,6 +76,7 @@ public:
     Stock* data;
     // pointer to the next node in the list 
     Node* next;
+    Coin* data1;
 };
 
 #endif // NODE_H
