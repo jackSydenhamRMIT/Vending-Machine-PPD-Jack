@@ -23,7 +23,7 @@ void Purchase::purchase_room()
 
     std::string cin_ID;
     std::cin>>cin_ID;
-
+    //Get the input product information
     auto rest = m_lst.find_node(cin_ID);
     if(rest == nullptr)
     {
@@ -38,46 +38,54 @@ void Purchase::purchase_room()
     int pice;
     int need_p = 100*rest->price.dollars + rest->price.cents;
     cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+    //Enter the amount of money paid
     while(std::cin>>pice)
     {
         if(pice != 200 && pice != 500)
         {
             cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
             cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
-            continue;
         }
-        int coin_cont = m_lst.get_coin(pice);
-        if(coin_cont<=0)
-        {
-            cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
-            cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
-            continue;
-        }
-        need_p -= pice;
-        if(need_p<=0)
-        {
-
-            cout<<"Here is your Meat Pie and your change of $ "<<rest->price.dollars<<"."<<rest->price.cents<<": $2 $1 50c";
-            for(int i=0;i<8 && need_p == 0;)
+        else{
+            //Get the amount of money
+            Coin coin = m_lst.get_coin(pice);
+            if(coin.count<=0)
             {
-                if(need_p+face_value[i] > 0)
-                {
-                    ++i;
-                    continue;
-                }
-                
-                if(face_value[i] >= 100)
-                    cout<<" $"<<face_value[i]/100;
-                else 
-                    cout<<" "<<face_value[i]<<"c";
-
-                need_p+=face_value[i];
+                cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
+                cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
             }
-            cout<<"\n";
-            return;
+            else{
+                need_p -= pice;
+                //Amount of money deducted
+                m_lst.use_coin(pice);
+                //Determine if there is enough money to buy this item
+                if(need_p<=0)
+                {
+
+                    cout<<"Here is your Meat Pie and your change of $ "<<rest->price.dollars<<"."<<rest->price.cents<<": $2 $1 50c";
+                    for(int i=0;i<8 && need_p == 0;)
+                    {
+                        if(need_p+face_value[i] > 0)
+                        {
+                            ++i;
+                        }
+                        else{
+                            //Money is $ or c
+                        if(face_value[i] >= 100)
+                            cout<<" $"<<face_value[i]/100;
+                            else 
+                                cout<<" "<<face_value[i]<<"c";
+
+                            need_p+=face_value[i]; 
+                        }
+                    }
+                    cout<<"\n";
+                    return;
+                }
+                else
+                cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+            }
         }
-        else
-        cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
     }
 
 }
