@@ -29,6 +29,10 @@ int main(int argc, char **argv)
 
     Purchase purchase(linkedlist);
     Display display;
+    Coin* coin;
+    coin = new Coin();
+    Stock* stock;
+
 
     display.show_menu();
 
@@ -57,15 +61,15 @@ int main(int argc, char **argv)
         }
         else if(num == 6)
         {
-            
+            coin->display(coin);
         }
         else if(num == 7)
-        {
-            
+        {   
+            stock->ResetStock(stock);
         }
         else if(num == 8)
         {
-            
+            coin->ResetCoins(coin);
         }
         else if(num == 9)
         {
