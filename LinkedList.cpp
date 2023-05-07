@@ -145,4 +145,49 @@ void LinkedList::use_coin(int cn)
     return ;
 }
 
+void LinkedList::saveStockData(const char* filename){
+    std::ofstream stockFile(filename);
+    if(!stockFile){
+        std::cerr << "Error: could not open file for writing." << std::endl;
+        EXIT_FAILURE;
+    }
+
+    Node* current = head;
+    while (current != NULL){
+        Stock* stock = current->data;
+        stockFile << stock->id << "|" << stock->name << "|" << stock->description << "|" << stock->price.dollars
+        << "." << stock->price.cents << "|" << stock->on_hand << std::endl;
+        current = current->next;
+    }
+    stockFile.close();
+}
+
+void LinkedList::saveCoinsData(const char* filename){
+    std::ofstream coinsFile(filename);
+    if(!coinsFile){
+        std::cerr << "Error: could not open file for writing." << std::endl;
+        EXIT_FAILURE;
+    }
+
+    Node* current = head;
+    while (current != NULL){
+        Coin* coin = current->data1;
+        coinsFile << coin->denom << "," << coin->count << std::endl;
+        current = current->next;
+    }
+    coinsFile.close();
+}
+
+void LinkedList::freeMemory(){
+    Node* current = head;
+    while (current != NULL){
+        Node* next = current->next;
+        delete current->data;
+        delete current;
+        current = next;
+    }
+    head = nullptr;
+    count = 0;
+    
+}
 
