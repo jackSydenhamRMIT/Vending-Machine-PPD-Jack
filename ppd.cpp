@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     Coin* coin;
     coin = new Coin();
     Stock* stock;
+    stock = new Stock();
 
 
     display.show_menu();
