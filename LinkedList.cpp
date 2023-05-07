@@ -101,8 +101,8 @@ void LinkedList::loadCoinsData(const char* filename){
                 coin.count = std::stoi(count_str);
             }
             //test print
-            std::cout << coin.denom << std::endl;
-            std::cout << coin.count << std::endl;
+            //std::cout << coin.denom << std::endl;
+            //std::cout << coin.count << std::endl;
             
         }
 }
