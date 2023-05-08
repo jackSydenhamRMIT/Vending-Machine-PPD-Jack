@@ -137,6 +137,7 @@ void LinkedList::loadCoinsData(const char* filename) {
                 delete coin;
                 break;
             }
+
             currNode = currNode->next;
         }
 
@@ -155,6 +156,7 @@ void LinkedList::loadCoinsData(const char* filename) {
                 }
                 currNode->next = newNode;
             }
+
         }
     }
 }
@@ -178,11 +180,6 @@ Coin LinkedList::get_coin(int cn)
         return Coin();
     }
     return coin->second;
-}
-
-
-Node* LinkedList::getHead(){
-    return head;
 }
 
 void LinkedList::use_coin(int cn)
@@ -237,6 +234,15 @@ void LinkedList::freeMemory(){
     head = nullptr;
     count = 0;
     
+}
+
+
+void LinkedList::change_coin(int cn)
+{
+    if(m_coins.find(cn) == m_coins.end())
+        return ;
+    m_coins[cn].count++;
+    return ;
 }
 
 void LinkedList::displayCoins(LinkedList& coinList){
@@ -308,3 +314,4 @@ void LinkedList::displayCoins(LinkedList& coinList){
 
     
 }
+
