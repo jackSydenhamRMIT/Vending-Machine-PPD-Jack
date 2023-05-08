@@ -101,7 +101,7 @@ void Purchase::purchase_room()
         cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
     }
 
-}
+
 
         }
         else{
@@ -117,8 +117,7 @@ void Purchase::purchase_room()
                 //Amount of money deducted
                 tmp_save_money.push_back(pice);
                 //Determine if there is enough money to buy this item
-                if(need_p<=0)
-                {
+                if(need_p<=0){
                     cout<<"Here is your Meat Pie and your change of $ "<<rest->price.dollars<<"."<<rest->price.cents<<": ";
                     for(int i=0;i<8 && need_p < 0;)
                     {
@@ -138,7 +137,7 @@ void Purchase::purchase_room()
                             m_lst.change_coin(face_value[i]);
                         }
                     }
-                    cout<<"\n";
+                        cout<<"\n";
 
                     for(auto coin_t : tmp_save_money)
                         m_lst.use_coin(coin_t);
@@ -146,13 +145,14 @@ void Purchase::purchase_room()
                     // m_lst.display_coin();
                     return;
                 }
-                else
+                else{
                 cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+                }
             }
         }
     }
 
-}
+
 
 std::string Purchase::get_cin(bool a)
 {
