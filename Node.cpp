@@ -19,7 +19,8 @@ void Stock::ResetStock(Stock* stock){
     //loops through linkedlist
     //sets all stock::on_hand values to DEFAULT_STOCK_LEVEL 20
 
-    std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+    stock->on_hand = DEFAULT_STOCK_LEVEL;
+
 }
 
 void Coin::ResetCoins(Coin* coin){
@@ -27,7 +28,9 @@ void Coin::ResetCoins(Coin* coin){
     //resets coins to correct denomination
     //DEFAULT_COIN_COUNT 20
 
-    std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
+    coin->count = DEFAULT_COIN_COUNT;
+    
+
 }
 
    
