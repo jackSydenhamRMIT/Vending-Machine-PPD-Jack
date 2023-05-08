@@ -94,7 +94,7 @@ int main(int argc, char **argv)
             //std::cout << stock->on_hand << std::endl;
             current = current->next;
             }
-            //std::cout << "“All coin has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+            std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
             display.show_menu();
         }
         else if(num == 9)
