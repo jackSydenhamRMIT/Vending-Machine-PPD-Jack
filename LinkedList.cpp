@@ -13,8 +13,15 @@ LinkedList::LinkedList() {
 }
 
 LinkedList::~LinkedList() {
-    // TODO
+    Node* current = head;
+    while (current != nullptr) {
+        Node* nextNode = current->next;
+        delete current->data;
+        delete current;
+        current = nextNode;
+    }
 }
+
 
 
 void LinkedList::loadStockData(const char* filename) {
@@ -123,14 +130,18 @@ void LinkedList::displayItems() {
     }
 }
 
-void LinkedList::addStock(const std::string& id, const std::string& name, const std::string& desc, const Price& price, unsigned onHand) {
+void LinkedList::addStock(const std::string& id, const std::string& name, const std::string& desc, int dollars, int cents, int onHand) {
     
     // Create new Stock object with given parameters
     Stock* stock = new Stock;
     stock->id = id;
     stock->name = name;
     stock->description = desc;
-    stock->price = price;
+
+    // Initialize the price with the given dollars and cents
+    stock->price.dollars = dollars;
+    stock->price.cents = cents;
+
     stock->on_hand = onHand;
 
     // Create a new node in the linked-list
@@ -151,7 +162,9 @@ void LinkedList::addStock(const std::string& id, const std::string& name, const 
 
     // Increment the count of items stocked (linked-list size)
     count++;
-}        
+}
+
+
 
 bool LinkedList::removeStock(const std::string& id) {
     if (head == nullptr) {
@@ -172,6 +185,9 @@ bool LinkedList::removeStock(const std::string& id) {
     Node* currNode = head;
     while (currNode->next != nullptr && currNode->next->data->id != id) {
         currNode = currNode->next;
+        if (currNode == nullptr) {
+            return false; // Stock not found
+        }
     }
 
     if (currNode->next == nullptr) {
@@ -186,6 +202,8 @@ bool LinkedList::removeStock(const std::string& id) {
     count--;
     return true;
 }
+
+
 
 Stock* LinkedList::find_node(std::string ID)
 {

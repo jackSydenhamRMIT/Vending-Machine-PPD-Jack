@@ -13,8 +13,9 @@ public:
     void addStock(const std::string& id, 
                   const std::string& name, 
                   const std::string& desc, 
-                  const Price& price, 
-                  unsigned onHand);
+                  const int dollars, 
+                  const int cents, 
+                  int onHand);
     bool removeStock(const std::string& id);
     void displayItems();
 
