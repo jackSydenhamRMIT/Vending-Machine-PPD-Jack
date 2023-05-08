@@ -11,6 +11,7 @@ public:
     ~LinkedList();
     void loadStockData(const char* filename);
     void loadCoinsData(const char* filename);
+    void loadCoinsDataDenom(const char* filename);
     void saveStockData(const char* filename);
     void saveCoinsData(const char* filename);
     void freeMemory();
@@ -24,6 +25,8 @@ public:
     void use_coin(int cn);
 
     Node* getHead();
+
+    void displayCoins(LinkedList& coinList);
 
 private:
     // the beginning of the list

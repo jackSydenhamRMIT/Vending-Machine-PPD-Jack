@@ -94,7 +94,35 @@ void LinkedList::loadCoinsData(const char* filename) {
         Coin* coin = new Coin;
         std::string denom_str;
         if (std::getline(iss, denom_str, ',')) {
-            coin->denom = static_cast<Denomination>(std::stoi(denom_str));
+            
+            if(denom_str == "5"){
+                coin->denom = FIVE_CENTS;
+            }
+            else if (denom_str == "10"){
+                coin->denom = TEN_CENTS;
+            }
+            else if (denom_str == "20"){
+                coin->denom = TWENTY_CENTS;
+            }
+            else if (denom_str == "50"){
+                coin->denom = FIFTY_CENTS;
+            }
+            else if (denom_str == "100"){
+                coin->denom = ONE_DOLLAR;
+            }
+            else if (denom_str == "200"){
+                coin->denom = TWO_DOLLARS;
+            }
+            else if (denom_str == "500"){
+                coin->denom = FIVE_DOLLARS;
+            }
+            else if (denom_str == "1000"){
+                coin->denom = TEN_DOLLARS;
+            }
+            else{
+                coin->denom = FIVE_CENTS;
+            }        
+                         
         }
 
         std::string count_str;
@@ -116,6 +144,7 @@ void LinkedList::loadCoinsData(const char* filename) {
             Node* newNode = new Node;
             newNode->data1 = coin;
             newNode->next = nullptr;
+            std::cout << coin->count << coin->denom << std::endl;
 
             if (head == nullptr) {
                 head = newNode;
@@ -210,3 +239,72 @@ void LinkedList::freeMemory(){
     
 }
 
+void LinkedList::displayCoins(LinkedList& coinList){
+
+
+    int fiveCents = 0;
+    int tenCents = 0;
+    int twentyCents = 0;
+    int fiftyCents = 0;
+    int oneDollar = 0;
+    int twoDollar = 0;
+    int fiveDollar = 0;
+    int tenDollar = 0;
+
+
+    Node* current = coinList.getHead();
+            while (current != NULL) {
+                Coin* coin = new Coin(current->data1->denom, current->data1->count); 
+ 
+                //std::cout << "Passed denom: " << coin->denom << " Passed count: " << coin->count << std::endl;
+                if (coin->denom == FIVE_CENTS){
+                    fiveCents = coin->count;                 
+                }
+                else if (coin->denom == TEN_CENTS){
+                    tenCents = coin->count;                  
+                }
+                else if (coin->denom == TWENTY_CENTS){
+                    twentyCents = coin->count;                   
+                }
+                else if (coin->denom == FIFTY_CENTS){
+                    fiftyCents = coin->count;                
+                }
+                else if (coin->denom == ONE_DOLLAR){
+                    oneDollar = coin->count;                   
+                }
+                else if (coin->denom == TWO_DOLLARS){
+                    twoDollar = coin->count;                   
+                }
+                else if (coin->denom == FIVE_DOLLARS){
+                    fiveDollar = coin->count;                    
+                }
+                else if (coin->denom == TEN_DOLLARS){
+                    tenDollar = coin->count;                   
+                }
+
+                // switch (Denomination){
+
+                //     case FIVE_DOLLARS:
+                        
+                // }
+                current = current->next;
+
+                
+                }
+
+    std::cout << "Coin Summary" << std::endl;
+    std::cout << "-------------" << std::endl;
+    std::cout << "Denomination | Count" << std::endl;    
+    std::cout << "---------------------------" << std::endl;    
+    std::cout << "5 Cents      |" << fiveCents << std::endl;  
+    std::cout << "10 Cents     |" << tenCents << std::endl;  
+    std::cout << "20 Cents     |" << twentyCents << std::endl;  
+    std::cout << "50 Cents     |" << fiftyCents << std::endl;  
+    std::cout << "1 Dollar     |" << oneDollar << std::endl;  
+    std::cout << "2 Dollar     |" << twoDollar << std::endl;
+    std::cout << "5 Dollar     |" << fiveDollar << std::endl;
+    std::cout << "10 Dollar    |" << tenDollar << std::endl;
+
+
+    
+}

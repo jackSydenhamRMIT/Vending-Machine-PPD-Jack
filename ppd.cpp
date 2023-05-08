@@ -30,8 +30,8 @@ int main(int argc, char **argv)
 
     Purchase purchase(stockList);
     Display display;
-    Coin* coin;
-    coin = new Coin();
+    // Coin* coin;
+    // coin = new Coin();
     // Stock* stock;
     // stock = new Stock();
 
@@ -66,8 +66,9 @@ int main(int argc, char **argv)
             
         }
         else if(num == 6)
-        {
-            coin->display(coin);
+        {   
+            coinList.displayCoins(coinList);         
+            display.show_menu();
         }
         else if(num == 7)
         {   
@@ -94,7 +95,7 @@ int main(int argc, char **argv)
             //std::cout << stock->on_hand << std::endl;
             current = current->next;
             }
-            //std::cout << "“All coin has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
+            std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
             display.show_menu();
         }
         else if(num == 9)
