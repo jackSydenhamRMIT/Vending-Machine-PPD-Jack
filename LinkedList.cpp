@@ -410,17 +410,6 @@ void LinkedList::displayCoins(LinkedList& coinList){
     
 }
 
-Stock* LinkedList::find_node(std::string ID)
-{
-    Node *new_p = head;
-    while(new_p != NULL)
-    {
-        if(new_p->data->id == ID)
-            return new_p->data;
-        new_p = new_p->next;
-    }
-    return nullptr;
-}
 
 int LinkedList::get_coin(int cn)
 {
