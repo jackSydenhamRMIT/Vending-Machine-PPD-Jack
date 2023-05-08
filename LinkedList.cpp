@@ -272,50 +272,50 @@ void LinkedList::saveCoinsData(const char* filename){
 
 }
 
-bool LinkedList::removeStock(const std::string& id) {
-    if (head == nullptr) {
-        return false; // Nothing to remove
-    }
+// bool LinkedList::removeStock(const std::string& id) {
+//     if (head == nullptr) {
+//         return false; // Nothing to remove
+//     }
 
-    if (head->data->id == id) {
-        // The stock to remove is at the list head
-        Node* nodeToRemove = head;
-        head = head->next;
-        delete nodeToRemove->data;
-        delete nodeToRemove;
-        count--;
-        return true;
-    }
+//     if (head->data->id == id) {
+//         // The stock to remove is at the list head
+//         Node* nodeToRemove = head;
+//         head = head->next;
+//         delete nodeToRemove->data;
+//         delete nodeToRemove;
+//         count--;
+//         return true;
+//     }
 
-    // Find stock object with given stock ID
-    Node* currNode = head;
-    while (currNode->next != nullptr && currNode->next->data->id != id) {
-        currNode = currNode->next;
-        if (currNode == nullptr) {
-            return false; // Stock not found
-        }
-    }
+//     // Find stock object with given stock ID
+//     Node* currNode = head;
+//     while (currNode->next != nullptr && currNode->next->data->id != id) {
+//         currNode = currNode->next;
+//         if (currNode == nullptr) {
+//             return false; // Stock not found
+//         }
+//     }
 
-    if (currNode->next == nullptr) {
-        return false; // Stock not found
-    }
+//     if (currNode->next == nullptr) {
+//         return false; // Stock not found
+//     }
 
-    // Remove the specific stock object from the list
-    Node* nodeToRemove = currNode->next;
-    currNode->next = nodeToRemove->next;
-    delete nodeToRemove->data;
-    delete nodeToRemove;
-    count--;
-    return true;
+//     // Remove the specific stock object from the list
+//     Node* nodeToRemove = currNode->next;
+//     currNode->next = nodeToRemove->next;
+//     delete nodeToRemove->data;
+//     delete nodeToRemove;
+//     count--;
+//     return true;
 
-    Node* current = head;
-    while (current != NULL){
-        Coin* coin = current->data1;
-        //coinsFile << coin->denom << "," << coin->count << std::endl;
-        current = current->next;
-    }
-    //coinsFile.close();
-}
+//     Node* current = head;
+//     while (current != NULL){
+//         Coin* coin = current->data1;
+//         //coinsFile << coin->denom << "," << coin->count << std::endl;
+//         current = current->next;
+//     }
+//     //coinsFile.close();
+// }
 
 void LinkedList::freeMemory(){
     Node* current = head;
