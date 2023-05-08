@@ -6,6 +6,8 @@ class Purchase
 {
 private:
     LinkedList & m_lst;
+    //Get the amount entered by the user
+    std::string get_cin(bool a = true);
 
 public:
     Purchase(LinkedList & lst);
