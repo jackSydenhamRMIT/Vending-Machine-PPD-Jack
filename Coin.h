@@ -26,10 +26,7 @@ public:
 
     Coin();
     Coin(Denomination denomination, unsigned count);
-
-    //displays all coins and denominations
-    void display(Coin* coin);
-
+ 
     //resets coins to original denominations
     void ResetCoins(Coin* coin);
 
