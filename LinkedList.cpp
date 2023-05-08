@@ -311,10 +311,10 @@ bool LinkedList::removeStock(const std::string& id) {
     Node* current = head;
     while (current != NULL){
         Coin* coin = current->data1;
-        coinsFile << coin->denom << "," << coin->count << std::endl;
+        //coinsFile << coin->denom << "," << coin->count << std::endl;
         current = current->next;
     }
-    coinsFile.close();
+    //coinsFile.close();
 }
 
 void LinkedList::freeMemory(){
