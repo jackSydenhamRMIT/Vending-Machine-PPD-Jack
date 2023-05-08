@@ -80,7 +80,7 @@ int main(int argc, char **argv)
             std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
             display.show_menu();
         {
-
+        }
             
         }
         else if(num == 8)
@@ -111,8 +111,8 @@ int main(int argc, char **argv)
             display.show_menu();
         }
           
-
-    }
+        }
+    
 
 
 }
