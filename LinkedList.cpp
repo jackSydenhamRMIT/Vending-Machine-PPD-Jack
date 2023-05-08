@@ -415,3 +415,7 @@ int LinkedList::get_coin(int cn)
 {
     return 1;
 }
+
+Node* LinkedList::getHead(){
+    return head;
+}

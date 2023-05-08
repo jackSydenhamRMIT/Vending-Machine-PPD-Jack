@@ -109,11 +109,11 @@ int main(int argc, char **argv)
             std::cout << "Enter the ID of the item you want to remove: ";
             std::cin >> itemId;
 
-            if (stockList.removeStock(itemId)) {
-                std::cout << "Item with ID " << itemId << " has been removed." << std::endl;
-            } else {
-                std::cout << "Item with ID " << itemId << " not found." << std::endl;
-            }
+            // if (stockList.removeStock(itemId)) {
+            //     std::cout << "Item with ID " << itemId << " has been removed." << std::endl;
+            // } else {
+            //     std::cout << "Item with ID " << itemId << " not found." << std::endl;
+            // }
           }
           
 
