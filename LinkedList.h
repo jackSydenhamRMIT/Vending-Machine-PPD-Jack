@@ -1,6 +1,7 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include "Node.h"
+#include "Coin.h"
 #include <map>
 
 class LinkedList
@@ -10,6 +11,10 @@ public:
     ~LinkedList();
     void loadStockData(const char* filename);
     void loadCoinsData(const char* filename);
+    void loadCoinsDataDenom(const char* filename);
+    void saveStockData(const char* filename);
+    void saveCoinsData(const char* filename);
+    void freeMemory();
 
     // more functions to be added perhaps...
     //Get product information node
@@ -21,11 +26,17 @@ public:
     //Change money
     void change_coin(int cn);
 
+
     void display_coin()
     {
         for(auto o:m_coins)
         std::cout<<o.second.denom<<" - "<<o.second.count<<"\n";
     }
+
+    Node* getHead();
+
+    void displayCoins(LinkedList& coinList);
+
 private:
     // the beginning of the list
     Node* head;
