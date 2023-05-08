@@ -20,14 +20,17 @@ void Stock::ResetStock(Stock* stock){
     //sets all stock::on_hand values to DEFAULT_STOCK_LEVEL 20
 
     stock->on_hand = DEFAULT_STOCK_LEVEL;
+
 }
 
 void Coin::ResetCoins(Coin* coin){
 
     //resets coins to correct denomination
     //DEFAULT_COIN_COUNT 20
+
     coin->count = DEFAULT_COIN_COUNT;
     
+
 }
 
    

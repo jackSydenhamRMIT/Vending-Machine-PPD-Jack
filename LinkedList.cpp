@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 #include <iostream>
+#include <iomanip>
 using std::string;
 //using std::vector;
 
@@ -12,8 +13,15 @@ LinkedList::LinkedList() {
 }
 
 LinkedList::~LinkedList() {
-    // TODO
+    Node* current = head;
+    while (current != nullptr) {
+        Node* nextNode = current->next;
+        delete current->data;
+        delete current;
+        current = nextNode;
+    }
 }
+
 
 
 void LinkedList::loadStockData(const char* filename) {
@@ -182,6 +190,53 @@ Coin LinkedList::get_coin(int cn)
     return coin->second;
 }
 
+
+void LinkedList::displayItems() {
+    Node* current = head;
+    while (current != nullptr) {
+        Stock* stock = current->data;
+        std::cout << stock->id << "|" 
+                  << std::left << std::setw(35) << stock->name << "|"
+                  << std::left << std::setw(10) << stock->on_hand << "|"
+                  << "$" << stock->price.dollars << "." << std::setw(2) << std::setfill('0') << stock->price.cents << std::setfill(' ')
+                  << std::endl;
+        current = current->next;
+    }
+}
+
+void LinkedList::addStock(const std::string& id, const std::string& name, const std::string& desc, int dollars, int cents, int onHand) {
+    
+    // Create new Stock object with given parameters
+    Stock* stock = new Stock;
+    stock->id = id;
+    stock->name = name;
+    stock->description = desc;
+
+    // Initialize the price with the given dollars and cents
+    stock->price.dollars = dollars;
+    stock->price.cents = cents;
+
+    stock->on_hand = onHand;
+
+    // Create a new node in the linked-list
+    Node* newNode = new Node;
+    newNode->data = stock;
+    newNode->next = nullptr;
+
+    // Place the new node in the linked-list
+    if (head == nullptr) {
+        head = newNode;
+    } else {
+        Node* currNode = head;
+        while (currNode->next != nullptr) {
+            currNode = currNode->next;
+        }
+        currNode->next = newNode;
+    }
+
+    // Increment the count of items stocked (linked-list size)
+    count++;
+
 void LinkedList::use_coin(int cn)
 {
     if(m_coins.find(cn) == m_coins.end())
@@ -205,6 +260,7 @@ void LinkedList::saveStockData(const char* filename){
         current = current->next;
     }
     stockFile.close();
+
 }
 
 void LinkedList::saveCoinsData(const char* filename){
@@ -213,6 +269,44 @@ void LinkedList::saveCoinsData(const char* filename){
         std::cerr << "Error: could not open file for writing." << std::endl;
         EXIT_FAILURE;
     }
+
+
+
+bool LinkedList::removeStock(const std::string& id) {
+    if (head == nullptr) {
+        return false; // Nothing to remove
+    }
+
+    if (head->data->id == id) {
+        // The stock to remove is at the list head
+        Node* nodeToRemove = head;
+        head = head->next;
+        delete nodeToRemove->data;
+        delete nodeToRemove;
+        count--;
+        return true;
+    }
+
+    // Find stock object with given stock ID
+    Node* currNode = head;
+    while (currNode->next != nullptr && currNode->next->data->id != id) {
+        currNode = currNode->next;
+        if (currNode == nullptr) {
+            return false; // Stock not found
+        }
+    }
+
+    if (currNode->next == nullptr) {
+        return false; // Stock not found
+    }
+
+    // Remove the specific stock object from the list
+    Node* nodeToRemove = currNode->next;
+    currNode->next = nodeToRemove->next;
+    delete nodeToRemove->data;
+    delete nodeToRemove;
+    count--;
+    return true;
 
     Node* current = head;
     while (current != NULL){
@@ -243,6 +337,7 @@ void LinkedList::change_coin(int cn)
         return ;
     m_coins[cn].count++;
     return ;
+
 }
 
 void LinkedList::displayCoins(LinkedList& coinList){
@@ -315,3 +410,19 @@ void LinkedList::displayCoins(LinkedList& coinList){
     
 }
 
+Stock* LinkedList::find_node(std::string ID)
+{
+    Node *new_p = head;
+    while(new_p != NULL)
+    {
+        if(new_p->data->id == ID)
+            return new_p->data;
+        new_p = new_p->next;
+    }
+    return nullptr;
+}
+
+int LinkedList::get_coin(int cn)
+{
+    return 1;
+}

@@ -11,6 +11,22 @@ public:
     ~LinkedList();
     void loadStockData(const char* filename);
     void loadCoinsData(const char* filename);
+
+    void addStock(const std::string& id, 
+                  const std::string& name, 
+                  const std::string& desc, 
+                  const int dollars, 
+                  const int cents, 
+                  int onHand);
+    bool removeStock(const std::string& id);
+    void displayItems();
+
+
+
+    // more functions to be added perhaps...
+    Stock*  find_node(std::string ID);
+    int get_coin(int cn);
+
     void loadCoinsDataDenom(const char* filename);
     void saveStockData(const char* filename);
     void saveCoinsData(const char* filename);
@@ -36,6 +52,7 @@ public:
     Node* getHead();
 
     void displayCoins(LinkedList& coinList);
+
 
 private:
     // the beginning of the list
