@@ -4,7 +4,6 @@
  // implement functions for managing coins; this may depend on your design.
 using std::string;
 //using std::vector;
-LinkedList coinList;
  
 
  Coin::Coin() {
