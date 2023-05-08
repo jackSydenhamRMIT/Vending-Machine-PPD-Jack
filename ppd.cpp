@@ -67,7 +67,6 @@ int main(int argc, char **argv)
         }
         else if(num == 6)
         {   
-            coinList.loadCoinsDataDenom(CoinsFile);  
             coinList.displayCoins(coinList);         
             display.show_menu();
         }

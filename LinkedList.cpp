@@ -94,7 +94,34 @@ void LinkedList::loadCoinsData(const char* filename) {
         Coin* coin = new Coin;
         std::string denom_str;
         if (std::getline(iss, denom_str, ',')) {
-            coin->denom = static_cast<Denomination>(std::stoi(denom_str));         
+            
+            if(denom_str == "5"){
+                coin->denom = FIVE_CENTS;
+            }
+            else if (denom_str == "10"){
+                coin->denom = TEN_CENTS;
+            }
+            else if (denom_str == "20"){
+                coin->denom = TWENTY_CENTS;
+            }
+            else if (denom_str == "50"){
+                coin->denom = FIFTY_CENTS;
+            }
+            else if (denom_str == "100"){
+                coin->denom = ONE_DOLLAR;
+            }
+            else if (denom_str == "200"){
+                coin->denom = TWO_DOLLARS;
+            }
+            else if (denom_str == "500"){
+                coin->denom = FIVE_DOLLARS;
+            }
+            else if (denom_str == "1000"){
+                coin->denom = TEN_DOLLARS;
+            }
+            else{
+                coin->denom = FIVE_CENTS;
+            }        
                          
         }
 
@@ -280,84 +307,4 @@ void LinkedList::displayCoins(LinkedList& coinList){
 
 
     
-}
-
-void LinkedList::loadCoinsDataDenom(const char* filename) {  
-    std::ifstream coinsFile(filename);
-    if (!coinsFile.is_open()) {
-        std::cerr << "Error: could not open stock file." << std::endl;
-        exit(EXIT_FAILURE);
-    } 
-
-    std::string line;
-    while (std::getline(coinsFile, line)) {
-        std::istringstream iss(line);
-        Coin* coin = new Coin;
-        std::string denom_str;
-        if (std::getline(iss, denom_str, ',')) {
-            //coin->denom = static_cast<Denomination>(std::stoi(denom_str));
-            //Denomination denomination;
-
-            if(denom_str == "5"){
-                coin->denom = FIVE_CENTS;
-            }
-            else if (denom_str == "10"){
-                coin->denom = TEN_CENTS;
-            }
-            else if (denom_str == "20"){
-                coin->denom = TWENTY_CENTS;
-            }
-            else if (denom_str == "50"){
-                coin->denom = FIFTY_CENTS;
-            }
-            else if (denom_str == "100"){
-                coin->denom = ONE_DOLLAR;
-            }
-            else if (denom_str == "200"){
-                coin->denom = TWO_DOLLARS;
-            }
-            else if (denom_str == "500"){
-                coin->denom = FIVE_DOLLARS;
-            }
-            else if (denom_str == "1000"){
-                coin->denom = TEN_DOLLARS;
-            }
-            else{
-                coin->denom = FIVE_CENTS;
-            }
-             
-        }
-
-        std::string count_str;
-        if (std::getline(iss, count_str, ',')) {
-            coin->count = std::stoi(count_str);
-        }
-
-        Node* currNode = head;
-        while (currNode != nullptr) {
-            if (currNode->data1->denom == coin->denom) {
-                currNode->data1->count += coin->count;
-                delete coin;
-                break;
-            }
-            currNode = currNode->next;
-        }
-
-        if (currNode == nullptr) {
-            Node* newNode = new Node;
-            newNode->data1 = coin;
-            newNode->next = nullptr;
-            //std::cout << coin->count << coin->denom << std::endl;
-
-            if (head == nullptr) {
-                head = newNode;
-            } else {
-                Node* currNode = head;
-                while (currNode->next != nullptr) {
-                    currNode = currNode->next;
-                }
-                currNode->next = newNode;
-            }
-        }
-    }
 }
