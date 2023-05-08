@@ -23,6 +23,15 @@ public:
     Coin get_coin(int cn);
     // Use money
     void use_coin(int cn);
+    //Change money
+    void change_coin(int cn);
+
+
+    void display_coin()
+    {
+        for(auto o:m_coins)
+        std::cout<<o.second.denom<<" - "<<o.second.count<<"\n";
+    }
 
     Node* getHead();
 

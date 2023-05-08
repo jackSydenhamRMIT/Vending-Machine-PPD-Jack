@@ -2,7 +2,7 @@
 #include "Purchase.h"
 #include <iostream>
 #include <iomanip>
-
+#include <stdio.h>
 #include "Node.h"
 
 using std::cout;
@@ -22,7 +22,9 @@ void Purchase::purchase_room()
         <<"Please enter the id of the item you wish to purchase:";
 
     std::string cin_ID;
-    std::cin>>cin_ID;
+    cin_ID = get_cin();
+    cin_ID = get_cin();
+    // std::cin>>cin_ID;
     //Get the input product information
     auto rest = m_lst.find_node(cin_ID);
     if(rest == nullptr)
@@ -39,8 +41,14 @@ void Purchase::purchase_room()
     int need_p = 100*rest->price.dollars + rest->price.cents;
     cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
     //Enter the amount of money paid
-    while(std::cin>>pice)
+    std::vector<int> tmp_save_money;
+    std::string pice_s;
+    while(1)
     {
+        pice_s = get_cin();
+        if(pice_s == "")
+            return ;
+        pice = std::stoi(pice_s);
         if(pice != 200 && pice != 500)
         {
             cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
@@ -57,13 +65,12 @@ void Purchase::purchase_room()
             else{
                 need_p -= pice;
                 //Amount of money deducted
-                m_lst.use_coin(pice);
+                tmp_save_money.push_back(pice);
                 //Determine if there is enough money to buy this item
                 if(need_p<=0)
                 {
-
-                    cout<<"Here is your Meat Pie and your change of $ "<<rest->price.dollars<<"."<<rest->price.cents<<": $2 $1 50c";
-                    for(int i=0;i<8 && need_p == 0;)
+                    cout<<"Here is your Meat Pie and your change of $ "<<rest->price.dollars<<"."<<rest->price.cents<<": ";
+                    for(int i=0;i<8 && need_p < 0;)
                     {
                         if(need_p+face_value[i] > 0)
                         {
@@ -77,9 +84,16 @@ void Purchase::purchase_room()
                                 cout<<" "<<face_value[i]<<"c";
 
                             need_p+=face_value[i]; 
+                            //change (money)
+                            m_lst.change_coin(face_value[i]);
                         }
                     }
                     cout<<"\n";
+
+                    for(auto coin_t : tmp_save_money)
+                        m_lst.use_coin(coin_t);
+
+                    // m_lst.display_coin();
                     return;
                 }
                 else
@@ -88,4 +102,20 @@ void Purchase::purchase_room()
         }
     }
 
+}
+
+std::string Purchase::get_cin(bool a)
+{
+    char s;
+    std::string p;
+    while(1)
+    {
+        s = std::cin.get();
+        if(s == '\n')
+        {
+            return p;
+        }
+        p+=s;
+    }
+    return p;
 }

@@ -17,9 +17,9 @@ Node::~Node(){
 void Stock::ResetStock(Stock* stock){
 
     //loops through linkedlist
-    //sets all stock::on_hand values to DEFAULT_STOCK_LEVEL = "20"
+    //sets all stock::on_hand values to DEFAULT_STOCK_LEVEL 20
+
     stock->on_hand = DEFAULT_STOCK_LEVEL;
-    
 }
 
 void Coin::ResetCoins(Coin* coin){
