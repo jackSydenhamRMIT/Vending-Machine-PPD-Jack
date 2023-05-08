@@ -23,7 +23,8 @@ public:
     Coin get_coin(int cn);
     // Use money
     void use_coin(int cn);
-
+    //Change money
+    void change_coin(int cn);
     Node* getHead();
 
     void displayCoins(LinkedList& coinList);
