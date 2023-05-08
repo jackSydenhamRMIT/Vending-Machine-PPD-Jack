@@ -24,8 +24,6 @@ public:
 
 
     // more functions to be added perhaps...
-    Stock*  find_node(std::string ID);
-    int get_coin(int cn);
 
     void loadCoinsDataDenom(const char* filename);
     void saveStockData(const char* filename);
@@ -36,7 +34,7 @@ public:
     //Get product information node
     Stock*  find_node(std::string ID);
     //Get the money information
-    //Coin get_coin(int cn);
+    int get_coin(int cn);
     // Use money
     void use_coin(int cn);
     //Change money
