@@ -75,10 +75,10 @@ int main(int argc, char **argv)
             
             Node* current = stockList.getHead();
             while (current != NULL) {
-            Stock* stock = current->data;
-            stock->ResetStock(stock);
-            //std::cout << stock->on_hand << std::endl;
-            current = current->next;
+                Stock* stock = current->data;
+                stock->ResetStock(stock);
+                //std::cout << stock->on_hand << std::endl;
+                current = current->next;
             }
             std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
             display.show_menu();
@@ -90,10 +90,12 @@ int main(int argc, char **argv)
 
             Node* current = coinList.getHead();
             while (current != NULL) {
-            Coin* coin = current->data1;
-            coin->ResetCoins(coin);
-            //std::cout << stock->on_hand << std::endl;
-            current = current->next;
+                Coin* coin = new Coin(current->data1->denom, current->data1->count); 
+
+                std::cout << "BEFORE Coint count: " << coin->count << " Coin denom: " << coin->denom <<std::endl;
+                coin->ResetCoins(coin);               
+                std::cout << "AFTER Coint count: " << coin->count << " Coin denom: " << coin->denom <<std::endl;
+                current = current->next;
             }
             std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
             display.show_menu();
@@ -102,7 +104,11 @@ int main(int argc, char **argv)
         {
             
         }
-          //display.show_menu();
+        else{
+            std::cout << "Not a valid option selected. Please select from the following options:" << std::endl;
+            display.show_menu();
+        }
+          
     }
 
 
