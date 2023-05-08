@@ -36,7 +36,7 @@ public:
     //Get product information node
     Stock*  find_node(std::string ID);
     //Get the money information
-    Coin get_coin(int cn);
+    //Coin get_coin(int cn);
     // Use money
     void use_coin(int cn);
     //Change money

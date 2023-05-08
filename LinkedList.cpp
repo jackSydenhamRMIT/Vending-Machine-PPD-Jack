@@ -180,15 +180,15 @@ Stock* LinkedList::find_node(std::string ID)
     return nullptr;
 }
 
-Coin LinkedList::get_coin(int cn)
-{
-    auto coin = m_coins.find(cn);
-    if(coin == m_coins.end())
-    {
-        return Coin();
-    }
-    return coin->second;
-}
+// Coin LinkedList::get_coin(int cn)
+// {
+//     auto coin = m_coins.find(cn);
+//     if(coin == m_coins.end())
+//     {
+//         return Coin();
+//     }
+//     return coin->second;
+// }
 
 
 void LinkedList::displayItems() {
@@ -236,14 +236,14 @@ void LinkedList::addStock(const std::string& id, const std::string& name, const 
 
     // Increment the count of items stocked (linked-list size)
     count++;
-
-void LinkedList::use_coin(int cn)
-{
-    if(m_coins.find(cn) == m_coins.end())
+    }
+    void LinkedList::use_coin(int cn)
+    {
+        if(m_coins.find(cn) == m_coins.end())
+            return ;
+        m_coins[cn].count--;
         return ;
-    m_coins[cn].count--;
-    return ;
-}
+    }
 
 void LinkedList::saveStockData(const char* filename){
     std::ofstream stockFile(filename);
@@ -270,7 +270,7 @@ void LinkedList::saveCoinsData(const char* filename){
         EXIT_FAILURE;
     }
 
-
+}
 
 bool LinkedList::removeStock(const std::string& id) {
     if (head == nullptr) {
