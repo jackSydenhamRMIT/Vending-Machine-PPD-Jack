@@ -76,17 +76,17 @@ void LinkedList::loadStockData(const char* filename) {
         count++;
     }
     //test for print
-    Node* current = head;
-    while (current != NULL) {
-    Stock* stock = current->data;
-    std::cout << "ID: " << stock->id << std::endl;
-    std::cout << "Name: " << stock->name << std::endl;
-    std::cout << "Description: " << stock->description << std::endl;
-    std::cout << "Price: $" << stock->price.dollars << "." << stock->price.cents << std::endl;
-    std::cout << "On Hand: " << stock->on_hand << std::endl;
-    std::cout << std::endl;
-    current = current->next;
-}
+//     Node* current = head;
+//     while (current != NULL) {
+//     Stock* stock = current->data;
+//     std::cout << "ID: " << stock->id << std::endl;
+//     std::cout << "Name: " << stock->name << std::endl;
+//     std::cout << "Description: " << stock->description << std::endl;
+//     std::cout << "Price: $" << stock->price.dollars << "." << stock->price.cents << std::endl;
+//     std::cout << "On Hand: " << stock->on_hand << std::endl;
+//     std::cout << std::endl;
+//     current = current->next;
+// }
 
 }
 void LinkedList::loadCoinsData(const char* filename) {  
@@ -153,7 +153,7 @@ void LinkedList::loadCoinsData(const char* filename) {
             Node* newNode = new Node;
             newNode->data1 = coin;
             newNode->next = nullptr;
-            std::cout << coin->count << coin->denom << std::endl;
+            //std::cout << coin->count << coin->denom << std::endl;
 
             if (head == nullptr) {
                 head = newNode;
