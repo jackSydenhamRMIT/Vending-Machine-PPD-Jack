@@ -1,15 +1,38 @@
 #include <iostream>
 #include <limits>
+#include <cctype>
+#include <string>
 #include "LinkedList.h"
 #include "Purchase.h"
 #include "Display.h"
+#include "Coin.h"
 
+// Checks if price input is valid in that it matches the required format
+bool is_valid_price(const std::string &price_str) {
+    bool decimal_point_found = false;
+    int digits_after_decimal = 0;
+
+    for (const char &c : price_str) {
+        if (c == '.') {
+            if (decimal_point_found) return false;
+            decimal_point_found = true;
+        } else if (!std::isdigit(c)) {
+            return false;
+        } else if (decimal_point_found) {
+            ++digits_after_decimal;
+            if (digits_after_decimal > 2) return false;
+        }
+    }
+
+    return decimal_point_found && digits_after_decimal == 2;
+}
 
 /**
  * manages the running of the program, initialises data structures, loads
  * data, display the main menu, and handles the processing of options. 
  * Make sure free memory and close all files before exiting the program.
  **/
+
 int main(int argc, char **argv)
 {
     /* validate command line arguments */
@@ -34,6 +57,7 @@ int main(int argc, char **argv)
     Purchase purchase(stockList);
 
     Display display;
+    Coin coin;
 
     display.show_menu();
 
@@ -70,14 +94,16 @@ int main(int argc, char **argv)
         }
         else if(num == 4)
         {
-            std::cout<<"You will now add a new stock item to the Vending Machine:\n";
+            // Enter paramters which the new item will be based off
+
+            std::cout << "You will now add a new stock item to the Vending Machine:\n";
 
             std::string new_id = "I0006";
             std::string name, desc;
-            double price;
+            double price = 0.0;
             int onHand = 10;
 
-            std::cout<<"The id of the new item will be: " << new_id << "\n";
+            std::cout << "The id of the new item will be: " << new_id << "\n";
 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -87,10 +113,19 @@ int main(int argc, char **argv)
             std::cout << "Enter the item description: ";
             std::getline(std::cin, desc);
 
-            std::cout << "Enter item price (in the format x.yy): ";
-            std::cin >> price;
+            while (true) {
+                std::cout << "Enter item price (in the format x.yy): ";
+                std::string price_str;
+                std::getline(std::cin, price_str);
+                if (is_valid_price(price_str)) {
+                    price = std::stod(price_str);
+                    break;
+                } else {
+                    std::cout << "Invalid format. Please enter the price in the format x.yy.\n";
+                }
+            }
 
-            // Extract dollars and cents from the user-input price
+            // Extract dollars and cents from the user-in5put price
             int dollars = static_cast<int>(price);
             int cents = static_cast<int>((price - dollars) * 100 + 0.5); // Add 0.5 for rounding
 
@@ -99,6 +134,7 @@ int main(int argc, char **argv)
             
             std::cout << "This item: \""<< name << " - " << desc << "\" has now been added to the menu.";
             display.show_menu();
+
 
         }
         else if(num == 5)
