@@ -269,6 +269,40 @@ void LinkedList::saveCoinsData(const char* filename){
         std::cerr << "Error: could not open file for writing." << std::endl;
         EXIT_FAILURE;
     }
+   
+    Node* current = head;
+    while (current != NULL){
+        Coin* coin = current->data1;
+        //make denom from enumerations to character types
+        string denom = "";
+        if(coin->denom == FIVE_CENTS){
+            denom = "5";
+        }else if (coin->denom == TEN_CENTS)
+        {
+            denom = "10";
+        }else if (coin->denom == TWENTY_CENTS)
+        {
+            denom = "20";
+        }else if (coin->denom == FIFTY_CENTS)
+        {
+            denom = "50";
+        }else if (coin->denom == ONE_DOLLAR)
+        {
+            denom = "100";
+        }else if (coin->denom == TWO_DOLLARS)
+        {
+            denom = "200";
+        }else if (coin->denom == FIVE_DOLLARS)
+        {
+            denom = "500";
+        }else if (coin->denom == TEN_DOLLARS)
+        {
+            denom = "1000";
+        }
+        coinsFile << denom << "," << coin->count << std::endl;
+        current = current->next;
+    }
+    coinsFile.close();
 
 }
 
