@@ -353,11 +353,17 @@ void LinkedList::saveCoinsData(const char* filename){
 
 void LinkedList::freeMemory(){
     Node* current = head;
-    while (current != NULL){
+    while (current != nullptr){
         Node* next = current->next;
-        delete current->data;
+        if (current->data != nullptr)
+        {
+            delete current->data;
+            delete current->data1;
+            current->data = nullptr;
+        }
         delete current;
         current = next;
+        
     }
     head = nullptr;
     count = 0;
