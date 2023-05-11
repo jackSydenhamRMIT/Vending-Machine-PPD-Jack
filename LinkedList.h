@@ -18,14 +18,12 @@ public:
                   const int dollars, 
                   const int cents, 
                   int onHand);
-    bool removeStock(const std::string& id);
     void displayItems();
 
 
 
     // more functions to be added perhaps...
-
-    void loadCoinsDataDenom(const char* filename);
+    void removeItem(std::string ID);
     void saveStockData(const char* filename);
     void saveCoinsData(const char* filename);
     void freeMemory();
