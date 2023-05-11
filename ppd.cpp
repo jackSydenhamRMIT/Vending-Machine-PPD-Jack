@@ -26,7 +26,6 @@ bool is_valid_price(const std::string &price_str) {
 
     return decimal_point_found && digits_after_decimal == 2;
 }
-
 /**
  * manages the running of the program, initialises data structures, loads
  * data, display the main menu, and handles the processing of options. 
@@ -98,7 +97,31 @@ int main(int argc, char **argv)
 
             std::cout << "You will now add a new stock item to the Vending Machine:\n";
 
-            std::string new_id = "I0006";
+
+            std::string new_id = "";
+            Node* current = stockList.getHead();
+            while (current != NULL)
+            {
+                Stock* stock = current->data;
+                new_id = stock->id;
+                new_id = new_id.substr(1);
+                int id = std::stoi(new_id) + 1;
+                std::string str = std::to_string(id);
+                if (str.length() == 1)
+                {
+                    new_id = "I000" + str;
+                }else if (str.length() == 2)
+                {
+                    new_id = "I00" + str;
+                }else if (str.length() == 3)
+                {
+                    new_id = "I0" + str;
+                }else if (str.length() == 4)
+                {
+                    new_id = "I" + str;
+                }
+                current = current->next;
+            }
             std::string name, desc;
             double price = 0.0;
             int onHand = 10;
@@ -112,14 +135,15 @@ int main(int argc, char **argv)
 
             std::cout << "Enter the item description: ";
             std::getline(std::cin, desc);
+            bool flag = true;
 
-            while (true) {
+            while (flag) {
                 std::cout << "Enter item price (in the format x.yy): ";
                 std::string price_str;
                 std::getline(std::cin, price_str);
                 if (is_valid_price(price_str)) {
                     price = std::stod(price_str);
-                    break;
+                    flag = false;
                 } else {
                     std::cout << "Invalid format. Please enter the price in the format x.yy.\n";
                 }
@@ -144,12 +168,9 @@ int main(int argc, char **argv)
             std::string itemId;
             std::cout << "Enter the ID of the item you want to remove: ";
             std::cin >> itemId;
-
-            // if (stockList.removeStock(itemId)) {
-            //     std::cout << "Item with ID " << itemId << " has been removed." << std::endl;
-            // } else {
-            //     std::cout << "Item with ID " << itemId << " not found." << std::endl;
-            // }
+            stockList.removeItem(itemId);
+            std::cout << "Item removed"<< std::endl;
+            display.show_menu();
           }
           
 
@@ -197,7 +218,7 @@ int main(int argc, char **argv)
         }
         else if(num == 9)
         {
-            
+            exit(0);
         }
 
         else{
