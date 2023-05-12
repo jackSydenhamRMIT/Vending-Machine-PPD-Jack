@@ -139,12 +139,10 @@ void LinkedList::loadCoinsData(const char* filename) {
         }
 
         Node* currNode = head;
-        bool coinAdded = false;
         while (currNode != nullptr) {
             if (currNode->data1->denom == coin->denom) {
                 currNode->data1->count += coin->count;
                 delete coin;
-                coinAdded = true;
             }
 
             currNode = currNode->next;
