@@ -10,21 +10,30 @@
 // Checks if price input is valid in that it matches the required format
 bool is_valid_price(const std::string &price_str) {
     bool decimal_point_found = false;
+    bool is_valid = true; // Assuming the string the formatting requirements
     int digits_after_decimal = 0;
 
     for (const char &c : price_str) {
         if (c == '.') {
-            if (decimal_point_found) return false;
+            if(decimal_point_found){
+                is_valid = false; //if the decimal point appears twice, the string does not match the requirement
+            }
             decimal_point_found = true;
-        } else if (!std::isdigit(c)) {
-            return false;
-        } else if (decimal_point_found) {
+        }else if (!std::isdigit(c)) // if the character is not a number
+        {
+            is_valid = false;
+        }else if (decimal_point_found)
+        {
             ++digits_after_decimal;
-            if (digits_after_decimal > 2) return false;
+            if(digits_after_decimal > 2){
+                is_valid = false; // if there are more than two decimal places after the decimal point
+            }
         }
+        
+        
     }
 
-    return decimal_point_found && digits_after_decimal == 2;
+    return is_valid && decimal_point_found && digits_after_decimal == 2;
 }
 /**
  * manages the running of the program, initialises data structures, loads
@@ -157,9 +166,11 @@ int main(int argc, char **argv)
 
             // Add the item to the linked list using the addStock function and user-input parameters
             stockList.addStock(new_id, name, desc, dollars, cents, onHand);
+
             std::cout<<"\n"; 
             std::cout << "This item: \""<< name << " - " << desc << "\" has now been added to the menu.\n";
             std::cout << "\n";
+
             display.show_menu();
 
 
