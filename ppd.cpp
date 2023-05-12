@@ -39,30 +39,47 @@ int main(int argc, char **argv)
     LinkedList stockList;
     LinkedList coinList;
     // Check if 3 command line parameters have been entered
-    if (argc != 3){
+    if (argc != 3 && argc != 5){
         std::cerr << "Error:invalid arguments passed in. " << std::endl;
         std::cerr << "Correct arguments are:"<< std::endl << argv[0] << " <stockfile> <coinsfile>" << std::endl;
         std::cerr << "Where <stockfile> and <coinfile> are two valid files in the expected format." << std::endl;
         EXIT_FAILURE; 
     }
 
+    bool cin_or_path = true;
     const char* StockFile = argv[1];
     const char* CoinsFile = argv[2];
 
+    std::string input_path;
+    std::string output_path;
+    if(argc == 5)
+    {
+        cin_or_path = false;
+        input_path = argv[3];
+        output_path = argv[4];
+    }
 
     stockList.loadStockData(StockFile);
     coinList.loadCoinsData(CoinsFile);  
 
-    Purchase purchase(stockList);
+    Cin m_cin(input_path,cin_or_path);
+    Display display(output_path,cin_or_path);
+    
+    // Cin m_cin(input_path,true);
+    // Display display(output_path,true);
 
-    Display display;
+    Purchase purchase(stockList,coinList,m_cin,display);
+    
     Coin coin;
 
     display.show_menu();
 
     int num = 0;
-    while(std::cin>>num)
+    std::string cin_m;
+    while(true)
     {
+        cin_m = m_cin.get_cin();
+        num = std::stoi(cin_m);
         if(num == 1)
         {
 
@@ -81,6 +98,7 @@ int main(int argc, char **argv)
         else if(num == 2)
         {
             purchase.purchase_room();
+            display.show_menu();
         }
 
         else if(num == 3)
@@ -128,7 +146,7 @@ int main(int argc, char **argv)
 
             std::cout << "The id of the new item will be: " << new_id << "\n";
 
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
             std::cout << "Enter the item name: ";
             std::getline(std::cin, name);
@@ -205,11 +223,12 @@ int main(int argc, char **argv)
 
             Node* current = coinList.getHead();
             while (current != NULL) {
+                Coin* coin = new Coin(current->data1->denom, current->data1->count); 
 
-                Coin* coin = current->data1;
+                //std::cout << "BEFORE Coint count: " << coin->count << " Coin denom: " << coin->denom <<std::endl;
                 coin->ResetCoins(coin);               
+                //std::cout << "AFTER Coint count: " << coin->count << " Coin denom: " << coin->denom <<std::endl;
                 current = current->next;
-                
             }
             std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
             display.show_menu();
