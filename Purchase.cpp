@@ -29,6 +29,7 @@ void Purchase::purchase_room()
     auto rest = m_lst.find_node(cin_ID);
     if(rest == nullptr)
     {
+        std::cout<<"Input error.\n";
         return ;
     }
 
