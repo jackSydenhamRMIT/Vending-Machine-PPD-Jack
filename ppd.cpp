@@ -208,7 +208,6 @@ int main(int argc, char **argv)
 
                 Coin* coin = current->data1;
                 coin->ResetCoins(coin);               
-
                 current = current->next;
                 
             }
