@@ -416,11 +416,10 @@ void LinkedList::removeItem(string itemID){
                 previous->next = current->next;
             }
             count--;
-            
+            return;
         }
         previous = current;
-        current = current->next;
-        return;
+        current = current->next;    
     }
     
 }
