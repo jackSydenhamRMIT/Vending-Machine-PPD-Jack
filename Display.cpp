@@ -1,8 +1,12 @@
 // #include <iostream>
+// #include 
+#include <sstream>
 #include "Display.h"
+
 void Display::show_menu()
 {
-    std::cout<<"Main Menu:\n"
+    std::stringstream s;
+    s<<"Main Menu:\n"
     <<"\t1.Display Items\n"
     <<"\t2.Purchase Items\n"
     <<"\t3.Save and Exit\n"
@@ -16,6 +20,19 @@ void Display::show_menu()
     <<"\tSelect your option (1-9): ";
 
 
+   write_or_show(s.str());
+}
+
+void Display::write_or_show(std::string s)
+{
+    if(!fl)
+    {
+        f.open(path,std::ios::out|std::ios::app);
+        f<<s<<std::endl;
+        f.close();
+    }
+    else
+        std::cout<<s;
 }
 
 void Display::show_help()
