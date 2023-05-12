@@ -1,6 +1,7 @@
 #ifndef PTRCHASE_H
 #define PTRCHASE_H
 #include "LinkedList.h"
+#include "Cin.h"
 class Purchase
 {
 private:
