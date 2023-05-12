@@ -205,12 +205,11 @@ int main(int argc, char **argv)
 
             Node* current = coinList.getHead();
             while (current != NULL) {
-                Coin* coin = new Coin(current->data1->denom, current->data1->count); 
 
-                //std::cout << "BEFORE Coint count: " << coin->count << " Coin denom: " << coin->denom <<std::endl;
+                Coin* coin = new Coin(current->data1->denom, current->data1->count); 
                 coin->ResetCoins(coin);               
-                //std::cout << "AFTER Coint count: " << coin->count << " Coin denom: " << coin->denom <<std::endl;
                 current = current->next;
+                
             }
             std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
             display.show_menu();
