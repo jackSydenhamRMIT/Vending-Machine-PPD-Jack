@@ -316,12 +316,11 @@ void LinkedList::freeMemory(){
 
 void LinkedList::change_coin(int cn)
 {
-    if(m_coins.find(cn) == m_coins.end())
-        return ;
-    m_coins[cn].count++;
-    return ;
-
+    if (m_coins.find(cn) != m_coins.end()) {
+        m_coins[cn].count++;
+    }
 }
+
 
 void LinkedList::displayCoins(LinkedList& coinList){
 
