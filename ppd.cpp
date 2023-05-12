@@ -165,7 +165,7 @@ int main(int argc, char **argv)
             // Add the item to the linked list using the addStock function and user-input parameters
             stockList.addStock(new_id, name, desc, dollars, cents, onHand);
             
-            std::cout << "This item: \""<< name << " - " << desc << "\" has now been added to the menu.";
+            std::cout << "This item: \""<< name << " - " << desc << "\" has now been added to the menu." << std::endl;
             display.show_menu();
 
 
