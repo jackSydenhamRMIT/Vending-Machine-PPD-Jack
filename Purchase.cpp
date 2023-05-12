@@ -32,7 +32,7 @@ void Purchase::purchase_room()
         return ;
     }
 
-    cout<<"You have selected \""<< rest->name <<" - Yummy Beef in ... by pastry\"."
+    cout<<"You have selected \""<< rest->name << " - " << rest->description << "\"."
         <<"This will cost you $ "<<rest->price.dollars<<"."<<rest->price.cents<<"\n"
         <<"Please hand over the money - type in the value of each note/coin in cents.\n"
         <<"Press enter or ctrl-d on a new line to cancel this purchase:\n";
