@@ -1,9 +1,9 @@
+
 #include "Purchase.h"
 #include <iostream>
 #include <iomanip>
 #include <stdio.h>
 #include "Node.h"
-#include "Display.h"
 
 using std::cout;
 
@@ -93,11 +93,9 @@ void Purchase::purchase_room()
 
                     for(auto coin_t : tmp_save_money)
                         m_lst.use_coin(coin_t);
-                    Display display;
-                    display.show_menu();
 
                     // m_lst.display_coin();
-                    
+                    return;
                 }
                 else
                 cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
