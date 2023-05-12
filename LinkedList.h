@@ -2,8 +2,6 @@
 #define LINKEDLIST_H
 #include "Node.h"
 #include "Coin.h"
-#include "Display.h"
-#include <sstream>
 #include <map>
 
 class LinkedList
@@ -34,14 +32,13 @@ public:
     //Get product information node
     Stock*  find_node(std::string ID);
     //Get the money information
-    Coin get_coin(int cn);
+    int get_coin(int cn);
     // Use money
     void use_coin(int cn);
     //Change money
     void change_coin(int cn);
 
-    Denomination get_coin_enum(int cn);
-    
+
     void display_coin()
     {
         for(auto o:m_coins)
