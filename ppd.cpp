@@ -62,11 +62,11 @@ int main(int argc, char **argv)
     stockList.loadStockData(StockFile);
     coinList.loadCoinsData(CoinsFile);  
 
-    Cin m_cin(input_path,cin_or_path);
-    Display display(output_path,cin_or_path);
+    // Cin m_cin(input_path,cin_or_path);
+    // Display display(output_path,cin_or_path);
     
-    // Cin m_cin(input_path,true);
-    // Display display(output_path,true);
+    Cin m_cin(input_path,true);
+    Display display(output_path,true);
 
     Purchase purchase(stockList,coinList,m_cin,display);
     
