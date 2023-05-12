@@ -9,10 +9,12 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9): 4
+	Select your option (1-9): 
+
 You will now add a new stock item to the Vending Machine:
 The id of the new item will be: I0006
-Enter the item name: Enter the item description: Enter item price (in the format x.yy): This item: "Baklava - rich, sweet pastry made of layers of filo filled with chopped nuts and sweetened and held together with syrup or honey" has now been added to the menu.
+Enter the item name: Enter the item description: Enter item price (in the format x.yy): 
+This item: "Baklava - rich, sweet pastry made of layers of filo filled with chopped nuts and sweetened and held together with syrup or honey" has now been added to the menu.
 
 Main Menu:
 	1.Display Items
@@ -25,7 +27,8 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):1
+	Select your option (1-9):
+
 Items Menu
 ----------
 ID   |Name 				 |Available |Price
@@ -48,10 +51,12 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):4
+	Select your option (1-9):
+
 You will now add a new stock item to the Vending Machine:
 The id of the new item will be: I0007
-Enter the item name: Enter the item description: Enter item price (in the format x.yy): This item: "Pear Pie - Juicy pear flavour" has now been added to the menu.
+Enter the item name: Enter the item description: Enter item price (in the format x.yy): 
+This item: "Pear Pie - Juicy pear flavour" has now been added to the menu.
 
 Main Menu:
 	1.Display Items
@@ -64,7 +69,8 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):1
+	Select your option (1-9):
+	
 Items Menu
 ----------
 ID   |Name 				 |Available |Price
@@ -88,4 +94,4 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):3
+	Select your option (1-9):

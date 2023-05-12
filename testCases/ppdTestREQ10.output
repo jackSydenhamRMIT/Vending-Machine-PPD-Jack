@@ -9,7 +9,8 @@ Administrator-Only Menu:
     7.Reset Stock
     8.Reset Coins
     9.Abort Program
-    Select your option (1-9):6
+    Select your option (1-9):
+
 Coin Summary
 -------------
 Denomination | Count
@@ -22,6 +23,7 @@ Denomination | Count
 2 Dollar     |20
 5 Dollar     |4
 10 Dollar    |3
+
 Main Menu:
 	1.Display Items
 	2.Purchase Items
@@ -33,8 +35,9 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):8
+	Select your option (1-9):
 “All coins has been reset to the default level of 20”
+
 Main Menu:
 	1.Display Items
 	2.Purchase Items
@@ -46,7 +49,8 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):6
+	Select your option (1-9):
+	
 Coin Summary
 -------------
 Denomination | Count
@@ -59,15 +63,3 @@ Denomination | Count
 2 Dollar     |20
 5 Dollar     |20
 10 Dollar    |20
-Main Menu:
-	1.Display Items
-	2.Purchase Items
-	3.Save and Exit
-Administrator-Only Menu:
-	4.Add Item
-	5.Remove Item
-	6.Display Coins
-	7.Reset Stock
-	8.Reset Coins
-	9.Abort Program
-	Select your option (1-9):3
