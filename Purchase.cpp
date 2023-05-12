@@ -17,6 +17,7 @@ Purchase::~Purchase()
 
 void Purchase::purchase_room()
 {
+    bool canceled = false;
     cout<<"Purchase Item\n"
         <<"-------------\n"
         <<"Please enter the id of the item you wish to purchase:";
@@ -29,9 +30,8 @@ void Purchase::purchase_room()
     auto rest = m_lst.find_node(cin_ID);
     if(rest == nullptr)
     {
-        return ;
-    }
-
+        canceled = true;
+    }else{
     cout<<"You have selected \""<< rest->name <<" - Yummy Beef in ... by pastry\"."
         <<"This will cost you $ "<<rest->price.dollars<<"."<<rest->price.cents<<"\n"
         <<"Please hand over the money - type in the value of each note/coin in cents.\n"
@@ -102,7 +102,7 @@ void Purchase::purchase_room()
             }
         }
     }
-
+    }
 }
 
 std::string Purchase::get_cin(bool a)
