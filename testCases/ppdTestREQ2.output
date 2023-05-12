@@ -9,7 +9,9 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):Items Menu
+	Select your option (1-9):
+
+Items Menu
 ----------
 ID   |Name 				 |Available |Price
 ------------------------------------------------------------
@@ -30,7 +32,9 @@ Administrator-Only Menu:
 	7.Reset Stock
 	8.Reset Coins
 	9.Abort Program
-	Select your option (1-9):Coin Summary
+	Select your option (1-9):
+	
+Coin Summary
 -------------
 Denomination | Count
 ---------------------------
@@ -42,6 +46,7 @@ Denomination | Count
 2 Dollar     |20
 5 Dollar     |4
 10 Dollar    |3
+
 Main Menu:
 	1.Display Items
 	2.Purchase Items
