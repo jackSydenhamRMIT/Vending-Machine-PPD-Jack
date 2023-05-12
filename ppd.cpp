@@ -206,7 +206,7 @@ int main(int argc, char **argv)
             Node* current = coinList.getHead();
             while (current != NULL) {
 
-                Coin* coin = new Coin(current->data1->denom, current->data1->count); 
+                Coin* coin = current->data1;
                 coin->ResetCoins(coin);               
                 current = current->next;
                 
