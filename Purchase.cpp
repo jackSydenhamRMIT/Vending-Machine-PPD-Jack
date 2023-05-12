@@ -98,7 +98,7 @@ void Purchase::purchase_room()
                     // m_lst.display_coin();
                     Display display;
                     display.show_menu();
-                    
+                    return;
                 }
                 else
                 cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
