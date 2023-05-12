@@ -1,4 +1,4 @@
-
+#include "Display.h"
 #include "Purchase.h"
 #include <iostream>
 #include <iomanip>
@@ -95,7 +95,8 @@ void Purchase::purchase_room()
                         m_lst.use_coin(coin_t);
 
                     // m_lst.display_coin();
-                    return;
+                    Display display;
+                    display.show_menu();
                 }
                 else
                 cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
