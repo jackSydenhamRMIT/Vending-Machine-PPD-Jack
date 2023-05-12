@@ -13,8 +13,8 @@ void Display::show_menu()
     <<"\t7.Reset Stock\n"
     <<"\t8.Reset Coins\n"
     <<"\t9.Abort Program\n"
-    <<"\tSelect your option (1-9):"
-    <<"\n";  
+    <<"\tSelect your option (1-9): ";
+
 
 }
 

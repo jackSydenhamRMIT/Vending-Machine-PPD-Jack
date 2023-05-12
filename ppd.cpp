@@ -66,6 +66,7 @@ int main(int argc, char **argv)
         if(num == 1)
         {
         std::cout<<"\n";    
+        std::cout<<"\n"; 
         std::cout<<"Items Menu\n";
         std::cout<<"----------\n";
         std::cout<<"ID   |Name \t\t\t\t |Available |Price\n";
@@ -95,6 +96,7 @@ int main(int argc, char **argv)
         {
             // Enter paramters which the new item will be based off
             std::cout<<"\n";  
+            std::cout<<"\n";
             std::cout << "You will now add a new stock item to the Vending Machine:\n";
 
 
@@ -155,7 +157,7 @@ int main(int argc, char **argv)
 
             // Add the item to the linked list using the addStock function and user-input parameters
             stockList.addStock(new_id, name, desc, dollars, cents, onHand);
-            
+            std::cout<<"\n"; 
             std::cout << "This item: \""<< name << " - " << desc << "\" has now been added to the menu.\n";
             std::cout << "\n";
             display.show_menu();
@@ -164,14 +166,17 @@ int main(int argc, char **argv)
         }
         else if(num == 5)
         {
-            std::cout<<"\n";  
+            std::cout<<"\n"; 
+            std::cout<<"\n"; 
             std::cout<<"You will now remove a stock item from the Vending Machine based on it's given ID:\n";
             
             std::string itemId;
             std::cout << "Enter the ID of the item you want to remove: ";
             std::cin >> itemId;
             stockList.removeItem(itemId);
+            std::cout<<"\n";
             std::cout << "Item removed"<< std::endl;
+            std::cout<<"\n";
             display.show_menu();
           }
           
@@ -179,6 +184,7 @@ int main(int argc, char **argv)
      
         else if(num == 6)
         {
+            std::cout<<"\n";  
             std::cout<<"\n";  
             coinList.displayCoins(coinList);      
             std::cout<<"\n";     
@@ -197,6 +203,7 @@ int main(int argc, char **argv)
                 current = current->next;
             }
             std::cout<<"\n";  
+            std::cout<<"\n";
             std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
             std::cout<<"\n";  
             display.show_menu();
