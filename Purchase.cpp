@@ -1,9 +1,9 @@
-
 #include "Purchase.h"
 #include <iostream>
 #include <iomanip>
 #include <stdio.h>
 #include "Node.h"
+#include "Display.h"
 
 using std::cout;
 
@@ -17,7 +17,6 @@ Purchase::~Purchase()
 
 void Purchase::purchase_room()
 {
-    bool canceled = false;
     cout<<"Purchase Item\n"
         <<"-------------\n"
         <<"Please enter the id of the item you wish to purchase:";
@@ -30,8 +29,9 @@ void Purchase::purchase_room()
     auto rest = m_lst.find_node(cin_ID);
     if(rest == nullptr)
     {
-        canceled = true;
-    }else{
+        return ;
+    }
+
     cout<<"You have selected \""<< rest->name <<" - Yummy Beef in ... by pastry\"."
         <<"This will cost you $ "<<rest->price.dollars<<"."<<rest->price.cents<<"\n"
         <<"Please hand over the money - type in the value of each note/coin in cents.\n"
@@ -93,36 +93,32 @@ void Purchase::purchase_room()
 
                     for(auto coin_t : tmp_save_money)
                         m_lst.use_coin(coin_t);
+                    Display display;
+                    display.show_menu();
 
                     // m_lst.display_coin();
-                    return;
+                    
                 }
                 else
                 cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
             }
         }
     }
-    }
+
 }
 
 std::string Purchase::get_cin(bool a)
 {
     char s;
     std::string p;
-
-    bool done = false;
-    while(!done)
+    while(1)
     {
         s = std::cin.get();
         if(s == '\n')
         {
-            done = true;
+            return p;
         }
-        else
-        {
-            p += s;
-        }
+        p+=s;
     }
-    
     return p;
 }
