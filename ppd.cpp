@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     {
         if(num == 1)
         {
-
+        std::cout<<"\n";    
         std::cout<<"Items Menu\n";
         std::cout<<"----------\n";
         std::cout<<"ID   |Name \t\t\t\t |Available |Price\n";
