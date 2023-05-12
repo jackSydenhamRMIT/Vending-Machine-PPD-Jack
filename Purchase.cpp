@@ -109,14 +109,20 @@ std::string Purchase::get_cin(bool a)
 {
     char s;
     std::string p;
-    while(1)
+
+    bool done = false;
+    while(!done)
     {
         s = std::cin.get();
         if(s == '\n')
         {
-            return p;
+            done = true;
         }
-        p+=s;
+        else
+        {
+            p += s;
+        }
     }
+    
     return p;
 }
