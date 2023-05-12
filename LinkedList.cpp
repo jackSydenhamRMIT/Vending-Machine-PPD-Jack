@@ -143,7 +143,6 @@ void LinkedList::loadCoinsData(const char* filename) {
             if (currNode->data1->denom == coin->denom) {
                 currNode->data1->count += coin->count;
                 delete coin;
-                break;
             }
 
             currNode = currNode->next;
@@ -170,26 +169,16 @@ void LinkedList::loadCoinsData(const char* filename) {
 }
 Stock* LinkedList::find_node(std::string ID)
 {
+    Stock* result = nullptr;
     Node *new_p = head;
-    while(new_p != NULL)
+    while(new_p != NULL && result == nullptr)
     {
         if(new_p->data->id == ID)
-            return new_p->data;
+            result = new_p->data;
         new_p = new_p->next;
     }
-    return nullptr;
+    return result;
 }
-
-// Coin LinkedList::get_coin(int cn)
-// {
-//     auto coin = m_coins.find(cn);
-//     if(coin == m_coins.end())
-//     {
-//         return Coin();
-//     }
-//     return coin->second;
-// }
-
 
 void LinkedList::displayItems() {
     Node* current = head;
@@ -237,13 +226,12 @@ void LinkedList::addStock(const std::string& id, const std::string& name, const 
     // Increment the count of items stocked (linked-list size)
     count++;
     }
-    void LinkedList::use_coin(int cn)
-    {
-        if(m_coins.find(cn) == m_coins.end())
-            return ;
+void LinkedList::use_coin(int cn) {
+    if (m_coins.find(cn) != m_coins.end()) {
         m_coins[cn].count--;
-        return ;
     }
+}
+
 
 void LinkedList::saveStockData(const char* filename){
     std::ofstream stockFile(filename);
@@ -306,51 +294,6 @@ void LinkedList::saveCoinsData(const char* filename){
 
 }
 
-// bool LinkedList::removeStock(const std::string& id) {
-//     if (head == nullptr) {
-//         return false; // Nothing to remove
-//     }
-
-//     if (head->data->id == id) {
-//         // The stock to remove is at the list head
-//         Node* nodeToRemove = head;
-//         head = head->next;
-//         delete nodeToRemove->data;
-//         delete nodeToRemove;
-//         count--;
-//         return true;
-//     }
-
-//     // Find stock object with given stock ID
-//     Node* currNode = head;
-//     while (currNode->next != nullptr && currNode->next->data->id != id) {
-//         currNode = currNode->next;
-//         if (currNode == nullptr) {
-//             return false; // Stock not found
-//         }
-//     }
-
-//     if (currNode->next == nullptr) {
-//         return false; // Stock not found
-//     }
-
-//     // Remove the specific stock object from the list
-//     Node* nodeToRemove = currNode->next;
-//     currNode->next = nodeToRemove->next;
-//     delete nodeToRemove->data;
-//     delete nodeToRemove;
-//     count--;
-//     return true;
-
-//     Node* current = head;
-//     while (current != NULL){
-//         Coin* coin = current->data1;
-//         //coinsFile << coin->denom << "," << coin->count << std::endl;
-//         current = current->next;
-//     }
-//     //coinsFile.close();
-// }
-
 void LinkedList::freeMemory(){
     Node* current = head;
     while (current != nullptr){
@@ -373,12 +316,11 @@ void LinkedList::freeMemory(){
 
 void LinkedList::change_coin(int cn)
 {
-    if(m_coins.find(cn) == m_coins.end())
-        return ;
-    m_coins[cn].count++;
-    return ;
-
+    if (m_coins.find(cn) != m_coins.end()) {
+        m_coins[cn].count++;
+    }
 }
+
 
 void LinkedList::displayCoins(LinkedList& coinList){
 
@@ -474,11 +416,10 @@ void LinkedList::removeItem(string itemID){
                 previous->next = current->next;
             }
             count--;
-            
+            return;
         }
         previous = current;
-        current = current->next;
-        return;
+        current = current->next;    
     }
     
 }
