@@ -459,3 +459,26 @@ int LinkedList::get_coin(int cn)
 Node* LinkedList::getHead(){
     return head;
 }
+
+void LinkedList::removeItem(string itemID){
+    Node* current = head;
+    Node* previous = nullptr;
+    while (current != nullptr)
+    {
+        if (current->data->id == itemID)
+        {
+            if (previous == nullptr)
+            {
+                head = current->next;
+            }else{
+                previous->next = current->next;
+            }
+            count--;
+            
+        }
+        previous = current;
+        current = current->next;
+        return;
+    }
+    
+}
