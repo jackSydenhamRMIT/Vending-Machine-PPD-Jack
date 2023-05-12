@@ -157,6 +157,7 @@ int main(int argc, char **argv)
             stockList.addStock(new_id, name, desc, dollars, cents, onHand);
             
             std::cout << "This item: \""<< name << " - " << desc << "\" has now been added to the menu.\n";
+            std::cout << "\n";
             display.show_menu();
 
 
