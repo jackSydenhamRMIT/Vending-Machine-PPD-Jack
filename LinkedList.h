@@ -20,7 +20,8 @@ public:
                   int onHand);
     void displayItems();
 
-
+    bool COLOUR;
+    void changeColourVariable();
 
     // more functions to be added perhaps...
     void removeItem(std::string ID);

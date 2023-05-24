@@ -47,6 +47,7 @@ int main(int argc, char **argv)
     // TODO
     LinkedList stockList;
     LinkedList coinList;
+    LinkedList GlobalVars;
     // Check if 3 command line parameters have been entered
     if (argc != 3){
         std::cerr << "Error:invalid arguments passed in. " << std::endl;
@@ -76,6 +77,11 @@ int main(int argc, char **argv)
         {
         std::cout<<"\n";    
         std::cout<<"\n"; 
+
+        if(GlobalVars.COLOUR){
+        std::cout<<"MENUUUU\n";
+        }
+
         std::cout<<"Items Menu\n";
         std::cout<<"----------\n";
         std::cout<<"ID   |Name \t\t\t\t |Available |Price\n";
@@ -90,7 +96,7 @@ int main(int argc, char **argv)
         }
         else if(num == 2)
         {
-            purchase.purchase_room();
+            purchase.purchase_room(GlobalVars.COLOUR);
         }
 
         else if(num == 3)
@@ -244,6 +250,20 @@ int main(int argc, char **argv)
         else if(num == 9)
         {
             exit(0);
+        }
+        
+        else if(num == 10)
+        {
+            GlobalVars.changeColourVariable();
+            
+            if(GlobalVars.COLOUR){
+                std::cout<<"Coloured text has now been enabled.\n";
+            }
+            else if (!(GlobalVars.COLOUR)){
+                std::cout<<"Coloured text has now been disabled.\n";
+            }
+            
+            display.show_menu();
         }
 
         else{

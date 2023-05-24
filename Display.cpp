@@ -13,7 +13,9 @@ void Display::show_menu()
     <<"\t7.Reset Stock\n"
     <<"\t8.Reset Coins\n"
     <<"\t9.Abort Program\n"
-    <<"\tSelect your option (1-9): ";
+    <<"\t-- Enhancement Options --\n"
+    <<"\t10.Enable/disable Coloured Text\n"
+    <<"\tSelect your option (1-10): ";
 
 
 }

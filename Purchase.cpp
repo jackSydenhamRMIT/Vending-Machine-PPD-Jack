@@ -15,7 +15,7 @@ Purchase::~Purchase()
 {
 }
 
-void Purchase::purchase_room()
+void Purchase::purchase_room(bool Colour)
 {
     cout<<"Purchase Item\n"
         <<"-------------\n"
@@ -32,14 +32,30 @@ void Purchase::purchase_room()
         return ;
     }
 
-    cout<<"You have selected \""<< rest->name << " - " << rest->description << "\"."
-        <<"This will cost you $ "<<rest->price.dollars<<"."<<rest->price.cents<<"\n"
-        <<"Please hand over the money - type in the value of each note/coin in cents.\n"
+    
+    cout<<"You have selected \""<< rest->name << " - " << rest->description << "\".";
+
+    if(Colour){
+        cout<<" This will cost you \033[32m$"<<rest->price.dollars<<"."<<rest->price.cents<<"\033[0m\n";
+    }
+    else if(!(Colour)){
+        cout<<" This will cost you $"<<rest->price.dollars<<"."<<rest->price.cents<<"\n";
+    }
+
+    cout<<"Please hand over the money - type in the value of each note/coin in cents.\n"
         <<"Press enter or ctrl-d on a new line to cancel this purchase:\n";
     
     int pice;
     int need_p = 100*rest->price.dollars + rest->price.cents;
-    cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+
+    if(Colour){
+        cout<<"You still need to give us \033[32m$"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<"\033[0m:";
+    }
+    else if(!(Colour)){
+        cout<<"You still need to give us $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+
+    }
+
     //Enter the amount of money paid
     std::vector<int> tmp_save_money;
     std::string pice_s;
@@ -52,7 +68,13 @@ void Purchase::purchase_room()
         if(pice != 200 && pice != 500)
         {
             cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
-            cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+            if(Colour){
+                cout<<"You still need to give us \033[32m$"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<"\033[0m:";
+            }
+            else if(!(Colour)){
+                cout<<"You still need to give us $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+
+            }
         }
         else{
             //Get the amount of money
@@ -61,7 +83,13 @@ void Purchase::purchase_room()
             if(coin->count<=0)
             {
                 cout<<"Error: $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<" is not a valid denomination of money. Please try again\n";
-                cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+                if(Colour){
+                    cout<<"You still need to give us \033[32m$"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<"\033[0m:";
+                }
+                else if(!(Colour)){
+                    cout<<"You still need to give us $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+
+                }
             }
             else{
                 need_p -= pice;
@@ -100,7 +128,13 @@ void Purchase::purchase_room()
                     return;
                 }
                 else
-                cout<<"You still need to give us "<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+                if(Colour){
+                    cout<<"You still need to give us \033[32m$"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<"\033[0m:";
+                }
+                else if(!(Colour)){
+                    cout<<"You still need to give us $"<<std::fixed<<std::setprecision(2)<<(need_p/100.00)<<":";
+
+                }
             }
         }
     }

@@ -4,7 +4,13 @@
 using std::string;
 //using std::vector;
 
+bool COLOUR;
 
+
+// Enable/disable coloured text for minor enhancement 
+void LinkedList::changeColourVariable(){
+    COLOUR = !(COLOUR);
+}
 
 LinkedList::LinkedList() {
    head = nullptr;
