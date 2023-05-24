@@ -1,6 +1,10 @@
 #ifndef NODE_H
 #define NODE_H
 #include <string> 
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
 #include "Coin.h"
 
 
@@ -54,7 +58,10 @@ public:
     Price price;
     
     // how many of this item do we have on hand? 
-    unsigned on_hand;    
+    unsigned on_hand;   
+
+
+    void ResetStock(Stock* stock); 
 };
 
 /**
@@ -69,6 +76,7 @@ public:
     Stock* data;
     // pointer to the next node in the list 
     Node* next;
+    Coin* data1;
 };
 
 #endif // NODE_H
