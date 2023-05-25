@@ -23,6 +23,9 @@ public:
     bool COLOUR;
     void changeColourVariable();
 
+    bool HELP;
+    void changeHelpVariable();
+
     // more functions to be added perhaps...
     void removeItem(std::string ID);
     void saveStockData(const char* filename);

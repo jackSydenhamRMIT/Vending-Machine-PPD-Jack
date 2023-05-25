@@ -5,7 +5,7 @@
 class Display
 {
 public:
-    void show_menu();
+    void show_menu(bool Help);
     void show_help();
 };
 

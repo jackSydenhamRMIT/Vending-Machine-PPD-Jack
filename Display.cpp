@@ -1,6 +1,8 @@
 // #include <iostream>
 #include "Display.h"
-void Display::show_menu()
+#include "LinkedList.h"
+
+void Display::show_menu(bool Help)
 {
     std::cout<<"Main Menu:\n"
     <<"\t1.Display Items\n"
@@ -15,7 +17,13 @@ void Display::show_menu()
     <<"\t9.Abort Program\n"
     <<"\t-- Enhancement Options --\n"
     <<"\t10.Enable/disable Coloured Text\n"
-    <<"\tSelect your option (1-10): ";
+    <<"\t11.Enable/disable User Help Option\n";
+
+    if(Help){
+        std::cout<<"\t12.Help";
+    }
+
+    std::cout<<"\tSelect your option: ";
 
 
 }

@@ -15,7 +15,7 @@ Purchase::~Purchase()
 {
 }
 
-void Purchase::purchase_room(bool Colour)
+void Purchase::purchase_room(bool Colour, bool Help)
 {
     cout<<"Purchase Item\n"
         <<"-------------\n"
@@ -124,7 +124,7 @@ void Purchase::purchase_room(bool Colour)
 
                     // m_lst.display_coin();
                     Display display;
-                    display.show_menu();
+                    display.show_menu(Help);
                     return;
                 }
                 else

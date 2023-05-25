@@ -14,7 +14,7 @@ private:
 public:
     Purchase(LinkedList & lst);
 
-    void purchase_room(bool Colour);
+    void purchase_room(bool Colour, bool Help);
 
     ~Purchase();
 

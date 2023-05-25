@@ -7,6 +7,12 @@
 #include "Display.h"
 #include "Coin.h"
 
+/* validate command line arguments */
+// TODO
+LinkedList stockList;
+LinkedList coinList;
+LinkedList GlobalVars;
+
 // Checks if price input is valid in that it matches the required format
 bool is_valid_price(const std::string &price_str) {
     bool decimal_point_found = false;
@@ -35,6 +41,26 @@ bool is_valid_price(const std::string &price_str) {
 
     return is_valid && decimal_point_found && digits_after_decimal == 2;
 }
+
+std::string get_user_input_with_help(const std::string& prompt, const std::string& help_message)
+{
+    while (true)
+    {
+        std::cout << prompt;
+        std::string input;
+        std::getline(std::cin, input);
+        
+        if (input == "help" && GlobalVars.HELP)
+        {
+            std::cout << help_message << "\n";
+        }
+        else
+        {
+            return input;
+        }
+    }
+}
+
 /**
  * manages the running of the program, initialises data structures, loads
  * data, display the main menu, and handles the processing of options. 
@@ -43,11 +69,6 @@ bool is_valid_price(const std::string &price_str) {
 
 int main(int argc, char **argv)
 {
-    /* validate command line arguments */
-    // TODO
-    LinkedList stockList;
-    LinkedList coinList;
-    LinkedList GlobalVars;
     // Check if 3 command line parameters have been entered
     if (argc != 3){
         std::cerr << "Error:invalid arguments passed in. " << std::endl;
@@ -68,7 +89,7 @@ int main(int argc, char **argv)
     Display display;
     Coin coin;
 
-    display.show_menu();
+    display.show_menu(GlobalVars.HELP);
 
     int num = 0;
     while(std::cin>>num)
@@ -77,11 +98,6 @@ int main(int argc, char **argv)
         {
         std::cout<<"\n";    
         std::cout<<"\n"; 
-
-        if(GlobalVars.COLOUR){
-        std::cout<<"MENUUUU\n";
-        }
-
         std::cout<<"Items Menu\n";
         std::cout<<"----------\n";
         std::cout<<"ID   |Name \t\t\t\t |Available |Price\n";
@@ -90,13 +106,13 @@ int main(int argc, char **argv)
         stockList.displayItems();
         std::cout<<"\n";
         
-        display.show_menu();
+        display.show_menu(GlobalVars.HELP);
 
 
         }
         else if(num == 2)
         {
-            purchase.purchase_room(GlobalVars.COLOUR);
+            purchase.purchase_room(GlobalVars.COLOUR, GlobalVars.HELP);
         }
 
         else if(num == 3)
@@ -109,11 +125,9 @@ int main(int argc, char **argv)
         }
         else if(num == 4)
         {
-            // Enter paramters which the new item will be based off
             std::cout<<"\n";  
             std::cout<<"\n";
             std::cout << "You will now add a new stock item to the Vending Machine:\n";
-
 
             std::string new_id = "";
             Node* current = stockList.getHead();
@@ -139,6 +153,7 @@ int main(int argc, char **argv)
                 }
                 current = current->next;
             }
+
             std::string name, desc;
             double price = 0.0;
             int onHand = 10;
@@ -147,26 +162,27 @@ int main(int argc, char **argv)
 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-            std::cout << "Enter the item name: ";
-            std::getline(std::cin, name);
+            name = get_user_input_with_help(
+                "Enter the item name: ",
+                "The item name should be a short, descriptive title for the item.");
 
-            std::cout << "Enter the item description: ";
-            std::getline(std::cin, desc);
+            desc = get_user_input_with_help(
+                "Enter the item description: ",
+                "The item description should provide more detail about the item, such as its ingredients or preparation.");
+
             bool flag = true;
 
             while (flag) {
-                std::cout << "Enter item price (in the format x.yy): ";
-                std::string price_str;
-                std::getline(std::cin, price_str);
+                std::string price_str = get_user_input_with_help(
+                    "Enter item price (in the format x.yy): ",
+                    "The item price should be a number with two decimal places, representing dollars and cents. For example, '5.99'.");
                 if (is_valid_price(price_str)) {
                     price = std::stod(price_str);
                     flag = false;
-                } else {
-                    std::cout << "Invalid format. Please enter the price in the format x.yy.\n";
                 }
             }
 
-            // Extract dollars and cents from the user-in5put price
+            // Extract dollars and cents from the user-input price
             int dollars = static_cast<int>(price);
             int cents = static_cast<int>((price - dollars) * 100 + 0.5); // Add 0.5 for rounding
 
@@ -177,9 +193,7 @@ int main(int argc, char **argv)
             std::cout << "This item: \""<< name << " - " << desc << "\" has now been added to the menu.\n";
             std::cout << "\n";
 
-            display.show_menu();
-
-
+            display.show_menu(GlobalVars.HELP);
         }
         else if(num == 5)
         {
@@ -187,15 +201,19 @@ int main(int argc, char **argv)
             std::cout<<"\n"; 
             std::cout<<"You will now remove a stock item from the Vending Machine based on it's given ID:\n";
             
-            std::string itemId;
-            std::cout << "Enter the ID of the item you want to remove: ";
-            std::cin >> itemId;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            
+            std::string itemId = get_user_input_with_help(
+                "Enter the ID of the item you want to remove: ",
+                "The ID should be the unique identifier for the item you want to remove, which can be found in the item list (Option 1 on the menu)."
+            );
+            
             stockList.removeItem(itemId);
             std::cout<<"\n";
             std::cout << "Item removed"<< std::endl;
             std::cout<<"\n";
-            display.show_menu();
-          }
+            display.show_menu(GlobalVars.HELP);
+        }
           
 
      
@@ -205,7 +223,7 @@ int main(int argc, char **argv)
             std::cout<<"\n";  
             coinList.displayCoins(coinList);      
             std::cout<<"\n";     
-            display.show_menu();
+            display.show_menu(GlobalVars.HELP);
 
         }
         else if(num == 7)
@@ -223,7 +241,7 @@ int main(int argc, char **argv)
             std::cout<<"\n";
             std::cout << "“All stock has been reset to the default level of " << DEFAULT_STOCK_LEVEL << "”" << std::endl;
             std::cout<<"\n";  
-            display.show_menu();
+            display.show_menu(GlobalVars.HELP);
         {
         }
             
@@ -244,7 +262,7 @@ int main(int argc, char **argv)
             std::cout<<"\n";  
             std::cout << "“All coins has been reset to the default level of " << DEFAULT_COIN_COUNT << "”" << std::endl;
             std::cout<<"\n";  
-            display.show_menu();
+            display.show_menu(GlobalVars.HELP);
 
         }
         else if(num == 9)
@@ -263,12 +281,33 @@ int main(int argc, char **argv)
                 std::cout<<"Coloured text has now been disabled.\n";
             }
             
-            display.show_menu();
+            display.show_menu(GlobalVars.HELP);
+        }
+
+        else if(num == 11)
+        {
+            GlobalVars.changeHelpVariable();
+            
+            if(GlobalVars.HELP){
+                std::cout<<"User help option has now been enabled.\n";
+            }
+            else if (!(GlobalVars.HELP)){
+                std::cout<<"User help option has now been disabled.\n";
+            }
+            
+            display.show_menu(GlobalVars.HELP);
+        }
+
+        else if(num == 12 && GlobalVars.HELP) {
+            std::cout << "\nHere a number between 1 and 11 should be entered which will\n"
+                      << "trigger actions or move to different menus based on associated options.\n";
+            display.show_menu(GlobalVars.HELP);
+
         }
 
         else{
             std::cout << "Not a valid option selected. Please select from the following options:" << std::endl;
-            display.show_menu();
+            display.show_menu(GlobalVars.HELP);
         }
           
         }

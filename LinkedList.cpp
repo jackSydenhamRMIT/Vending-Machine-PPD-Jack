@@ -5,11 +5,16 @@ using std::string;
 //using std::vector;
 
 bool COLOUR;
-
+bool HELP;
 
 // Enable/disable coloured text for minor enhancement 
 void LinkedList::changeColourVariable(){
     COLOUR = !(COLOUR);
+}
+
+// Enable/disable coloured text for minor enhancement 
+void LinkedList::changeHelpVariable(){
+    HELP = !(HELP);
 }
 
 LinkedList::LinkedList() {
